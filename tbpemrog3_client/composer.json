@@ -12,7 +12,11 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
+<<<<<<< HEAD
 		"guzzlehttp/guzzle": "^7.0"
+=======
+		"guzzlehttp/guzzle": "7.0"
+>>>>>>> 4cbfe7d49035baa3003da5a070a886928cf6d4c8
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
