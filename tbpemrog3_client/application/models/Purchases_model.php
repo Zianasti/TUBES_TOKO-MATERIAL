@@ -30,6 +30,18 @@ class Purchases_model extends CI_Model
         return $result['data'];
     }
 
+    public function getSuppliers() {
+        $getSupplier = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/suppliers'
+        ]);
+
+        $response = $getSupplier->request('GET', '');
+
+        $result = json_decode($response->getBody()->getContents(), TRUE);
+
+        return $result['data'];
+    }
+
     public function getById($npm) {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [

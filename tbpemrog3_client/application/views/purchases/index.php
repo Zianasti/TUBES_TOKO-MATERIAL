@@ -3,22 +3,47 @@
 <body class="sb-nav-fixed">
     <?php $this->load->view('template/navbarsidebar'); ?>
     <div id="layoutSidenav_content">
-        <table class="table">
-            <tr>
-                <th>Tanggal</th>
-                <th>Total</th>
-                <th>Deskripsi</th>
-                <th>Supplier</th>
-            </tr>
-        <?php foreach($data_pembelian as $dp): ?>
-            <tr>
-                <td><?= $dp['date'] ?></td>
-                <td><?= $dp['total'] ?></td>
-                <td><?= $dp['description'] ?></td>
-                <td><?= $dp['name'] ?></td>
-            </tr>
-        <?php endforeach; ?>
-        </table>
+        <!-- Ngubah isi konten halaman dari sini -->
+        <div class="container">
+            <div class="row mt-2">
+                <h3>Data Pembelian</h3>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- Alert kalau ada pesan dari controller -->
+                    <?php if ($this->session->flashdata('message')) : ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error! <?= $this->session->flashdata('message'); ?>
+                            <button type="button" class="close" data-dismiss="alert" arialabel="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                    <!-- /Alert kalau ada pesan dari controller -->
+
+                    <a href="<?= base_url('purchases/add') ?>" class="btn btn-success">Tambah Data</a>
+                    <table class="table">
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Total</th>
+                            <th>Deskripsi</th>
+                            <th>Supplier</th>
+                        </tr>
+                    <?php foreach($data_pembelian as $dp): ?>
+                        <tr>
+                            <td><?= $dp['date'] ?></td>
+                            <td><?= $dp['total'] ?></td>
+                            <td><?= $dp['description'] ?></td>
+                            <td><?= $dp['name'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </table>
+                </div>
+            </div>
+        </div>      
+        <!-- Ngubah isi konten halaman sampe sini -->
     </div>
     <?php $this->load->view('template/footer'); ?>
 </body>
