@@ -17,10 +17,7 @@ class Purchases extends CI_Controller
 
         $data['data_pembelian'] = $this->Purchases_model->getAll();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu');
         $this->load->view('purchases/index', $data);
-        $this->load->view('templates/footer');
     }
 
     public function detail($npm)
@@ -29,10 +26,7 @@ class Purchases extends CI_Controller
 
         $data['data_mahasiswa'] = $this->Mahasiswa_model->getById($npm);
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu');
         $this->load->view('mahasiswa/detail', $data);
-        $this->load->view('templates/footer');
     }
 
     public function add()
