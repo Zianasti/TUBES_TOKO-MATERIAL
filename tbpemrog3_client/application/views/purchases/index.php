@@ -30,6 +30,7 @@
                             <th>Total</th>
                             <th>Deskripsi</th>
                             <th>Supplier</th>
+                            <th>Aksi</th>
                         </tr>
                     <?php foreach($data_pembelian as $dp): ?>
                         <tr>
@@ -37,6 +38,17 @@
                             <td><?= $dp['total'] ?></td>
                             <td><?= $dp['description'] ?></td>
                             <td><?= $dp['name'] ?></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fa fa-info"></i>
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                </button>                               
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </table>
