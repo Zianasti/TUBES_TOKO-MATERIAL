@@ -45,10 +45,10 @@
                                 <a href="<?= base_url('purchases/edit/').$dp['purchase_id'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fa fa-edit"></i>
                                 </a>  
-                                <form action="<?= base_url('purchases/delete/').$dp['purchase_id'] ?>" onsubmit="return deleteConfirmation()">
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                <form action="<?= base_url('purchases/delete/').$dp['purchase_id'] ?>" id="formDelete<?= $dp['purchase_id'] ?>">
+                                    <a href="#" onclick="deleteConfirmation(<?= $dp['purchase_id'] ?>)" class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </form>                             
                             </td>
                         </tr>
@@ -62,19 +62,20 @@
     <?php $this->load->view('template/footer'); ?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function deleteConfirmation() {
+        function deleteConfirmation(id) {
+            var idData = id
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Hapus data?',
+                text: "Anda yakin ingin menghapus data ini?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Hapus Data'
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    return true
-                } return false
+                    document.getElementById('formDelete'+idData).submit()
+                }
             })
         }
     </script>
