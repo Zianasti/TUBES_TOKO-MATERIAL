@@ -42,11 +42,11 @@ class Purchases_model extends CI_Model
         return $result['data'];
     }
 
-    public function getById($npm) {
+    public function getById($id) {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
-                'KEY' => 'ulbi123',
-                'npm' => $npm
+                // 'KEY' => 'ulbi123',
+                'purchase_id' => $id
             ]
         ]);
 
@@ -77,12 +77,12 @@ class Purchases_model extends CI_Model
         return $result;
     }
 
-    public function delete($npm) {
+    public function delete($id) {
         $response = $this->_guzzle->request('DELETE', '', [
             'form_params' => [
                 'http_errors' => false,
-                'KEY' => 'ulbi123',
-                'npm' => $npm
+                // 'KEY' => 'ulbi123',
+                'purchase_id' => $id
             ]
         ]);
 

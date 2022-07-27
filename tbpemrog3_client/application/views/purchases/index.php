@@ -39,15 +39,17 @@
                             <td><?= $dp['description'] ?></td>
                             <td><?= $dp['name'] ?></td>
                             <td>
-                                <button class="btn btn-secondary btn-sm">
+                                <a href="<?= base_url('purchases/detail/').$dp['purchase_id'] ?>" class="btn btn-secondary btn-sm">
                                     <i class="fa fa-info"></i>
-                                </button>
-                                <button class="btn btn-primary btn-sm">
+                                </a>
+                                <a href="<?= base_url('purchases/edit/').$dp['purchase_id'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fa fa-edit"></i>
-                                </button>                               
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+                                </a>  
+                                <form action="<?= base_url('purchases/delete/').$dp['purchase_id'] ?>" onsubmit="return deleteConfirmation()">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>                             
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -58,5 +60,23 @@
         <!-- Ngubah isi konten halaman sampe sini -->
     </div>
     <?php $this->load->view('template/footer'); ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function deleteConfirmation() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    return true
+                } return false
+            })
+        }
+    </script>
 </body>
 </html>
