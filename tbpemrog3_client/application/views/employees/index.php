@@ -6,7 +6,7 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Data Employees</h3>
+                <h3>Data Karyawan</h3>
             </div>
             <hr>
             <div class="row">
@@ -28,8 +28,6 @@
                         <tr>
                             <th>ID Karyawan</th>
                             <th>Nama</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Jenis Kelamin</th>
                             <th>Email</th>
                             <th>Aksi</th>
                         </tr>
@@ -37,8 +35,6 @@
                         <tr>
                             <td><?= $de['employee_id'] ?></td>
                             <td><?= $de['name'] ?></td>
-                            <td><?= $de['dob'] ?></td>
-                            <td><?= $de['gender'] ?></td>
                             <td><?= $de['email'] ?></td>
                             <td>
                             <a href="<?= base_url('employees/detail/'.$de['employee_id'])?>" class="btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>

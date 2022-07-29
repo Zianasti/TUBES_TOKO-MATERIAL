@@ -6,7 +6,7 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Tambah Data Employees</h3>
+                <h3>Tambah Data Karyawan</h3>
             </div>
             <hr>
             <div class="row mt-2">
