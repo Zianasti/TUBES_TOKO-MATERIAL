@@ -36,15 +36,14 @@ class Purchase_details extends CI_Controller
 
         if ($this->input->post('radioJenis') == 'radioBaru') {
             $this->form_validation->set_rules('name', 'name', 'trim|required');
-            $this->form_validation->set_rules('price', 'QTY', 'trim|required');
+            $this->form_validation->set_rules('price', 'price', 'trim|required');
             $this->form_validation->set_rules('category_id', 'category_id', 'trim|required');
-            $this->form_validation->set_rules('stock', 'total', 'trim|required');
 
             $this->form_validation->set_rules('purchase_detail_id', 'purchase_detail_id', 'trim|required');
-            $this->form_validation->set_rules('qty', 'QTY', 'trim|required');
+            $this->form_validation->set_rules('qty', 'qty', 'trim|required');
             $this->form_validation->set_rules('cost', 'cost', 'trim|required');
             $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
-            $this->form_validation->set_rules('material_id', 'material_id', 'trim|required');
+            $this->form_validation->set_rules('material_id1', 'material_id1', 'trim|required');
             $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
         }
 
@@ -53,7 +52,7 @@ class Purchase_details extends CI_Controller
             $this->form_validation->set_rules('qty', 'qty', 'trim|required');
             $this->form_validation->set_rules('cost', 'cost', 'trim|required');
             $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
-            $this->form_validation->set_rules('material_id', 'material_id', 'trim|required');
+            $this->form_validation->set_rules('material_id2', 'material_id2', 'trim|required');
             $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
         }
 
@@ -76,7 +75,7 @@ class Purchase_details extends CI_Controller
                     'qty' => $this->input->post('qty'),
                     'cost' => $this->input->post('cost'),
                     'subtotal' => $this->input->post('subtotal'),
-                    'material_id' => $this->input->post('material_id'),
+                    'material_id' => $this->input->post('material_id1'),
                     'purchase_id' => $this->input->post('purchase_id'),
                 ];
             }
@@ -89,7 +88,7 @@ class Purchase_details extends CI_Controller
                     'qty' => $this->input->post('qty'),
                     'cost' => $this->input->post('cost'),
                     'subtotal' => $this->input->post('subtotal'),
-                    'material_id' => $this->input->post('material_id'),
+                    'material_id' => $this->input->post('material_id2'),
                     'purchase_id' => $this->input->post('purchase_id'),
                 ];   
             }   
