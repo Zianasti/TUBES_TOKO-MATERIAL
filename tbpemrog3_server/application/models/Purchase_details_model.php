@@ -12,15 +12,79 @@ class Purchase_details_Model extends CI_Model
         }
         $this->db->join('materials','materials.material_id = purchase_details.material_id');
         $this->db->join('purchases','purchases.purchase_id = purchase_details.purchase_id');
-        $this->db->select('purchase_detail_id, qty, disc, subtotal, materials.name, materials.price, purchases.date, purchases.total, purchases.description');
+        $this->db->select('purchase_detail_id, qty, cost, subtotal, materials.name, materials.price, purchases.date, purchases.total, purchases.description');
         $query = $this->db->get()->result_array();
         return $query;
     }
 
     public function insert ($data)
     {
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
+        if ($data['jenisPost'] == "radioBaru") {
+            $this->db->insert('materials', [
+                'material_id' => $data['material_id'],
+                'name' => $data['name'],
+                'stock' => $data['qty'],
+                'price' => $data['price'],
+                'category_id' => $data['category_id']
+            ]);
+
+            $this->db->insert($this->_table, [
+                'purchase_detail_id' => $data['purchase_detail_id'],
+                'qty' => $data['qty'],
+                'cost' => $data['cost'],
+                'subtotal' => $data['subtotal'],
+                'material_id' => $data['material_id'],
+                'purchase_id' => $data['purchase_id']
+            ]);
+            
+            $this->db->from('purchases');
+            $this->db->where('purchase_id', $data['purchase_id']);
+            $this->db->select('total');
+            $currentTotal = $this->db->get()->row_array();
+            
+            $currentTotal += $data['subtotal'];
+
+            $this->db->update('purchases', [
+                'total' => $currentTotal
+            ], ['purchase_id' => $data['purchase_id']]);
+
+            $rowUpdatePurchases = $this->db->affected_rows();
+        }
+        if ($data['jenisPost'] == "radioUpdate") {
+            $this->db->insert($this->_table, [
+                'purchase_detail_id' => $data['purchase_detail_id'],
+                'qty' => $data['qty'],
+                'cost' => $data['cost'],
+                'subtotal' => $data['subtotal'],
+                'material_id' => $data['material_id'],
+                'purchase_id' => $data['purchase_id']
+            ]);
+
+            $this->db->from('purchases');
+            $this->db->where('purchase_id', $data['purchase_id']);
+            $this->db->select('total');
+            $currentTotal = $this->db->get()->row();
+            
+            $currentTotal = intval($currentTotal->total) + $data['subtotal'];
+
+            $this->db->update('purchases', [
+                'total' => $currentTotal
+            ], ['purchase_id' => $data['purchase_id']]);
+
+            $this->db->from('materials');
+            $this->db->where('material_id', $data['material_id']);
+            $this->db->select('stock');
+            $currentStock = $this->db->get()->row();
+
+            //update jumlah stock diambil dari qty yang baru diinput
+            $currentStock = intval($currentStock->stock) + $data['qty'];
+
+            $this->db->update('materials',[
+                'stock' => $currentStock
+            ], ['material_id' => $data['material_id']]);
+
+            return 1;
+        }
     }
 
     public function update ($data,$id)

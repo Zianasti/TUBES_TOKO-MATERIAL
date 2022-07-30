@@ -52,7 +52,7 @@ class Purchases extends RestController
 
         $cek_data = $this->Purchases_model->get($this->post('purchase_id'));
 
-        if ($data['purchase_id'] == NULL || $data['date'] == NULL || $data['total'] == NULL || $data['description']==NULL || $data['supplier_id']==NULL) {
+        if ($data['purchase_id'] == NULL || $data['date'] == NULL || $data['total'] === NULL || $data['description']==NULL || $data['supplier_id']==NULL) {
             $this->response(
                 [
                     'status' => false,

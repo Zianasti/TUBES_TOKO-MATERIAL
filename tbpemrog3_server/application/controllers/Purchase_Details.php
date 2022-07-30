@@ -43,9 +43,15 @@ class Purchase_Details extends RestController
     function index_post()
     {
         $data = array(
+            'jenisPost' => $this->post('jenisPost'),
+
+            'name' => $this->input->post('name'),
+            'price' => $this->input->post('price'),
+            'category_id' => $this->input->post('category_id'),
+
             'purchase_detail_id' => $this->post('purchase_detail_id'),
             'qty' => $this->post('qty'),
-            'disc' => $this->post('disc'),
+            'cost' => $this->post('cost'),
             'subtotal' => $this->post('subtotal'),
             'material_id' => $this->post('material_id'),
             'purchase_id' => $this->post('purchase_id')
@@ -53,7 +59,7 @@ class Purchase_Details extends RestController
 
         $cek_data = $this->Purchase_details_model->get($this->post('purchase_detail_id'));
 
-        if ($data['purchase_detail_id'] == NULL || $data['qty'] == NULL || $data['disc'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['purchase_id']==NULL) {
+        if ($data['purchase_detail_id'] == NULL || $data['qty'] == NULL || $data['cost'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['purchase_id']==NULL) {
             $this->response(
                 [
                     'status' => false,
@@ -68,6 +74,7 @@ class Purchase_Details extends RestController
                     'status' =>false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Duplikat',
+                    'hasil_cek' => $cek_data
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
@@ -98,7 +105,7 @@ class Purchase_Details extends RestController
         $data = array (
             'purchase_detail_id' => $this->put('purchase_detail_id'),
             'qty' => $this->put('qty'),
-            'disc' => $this->put('disc'),
+            'cost' => $this->put('cost'),
             'subtotal' => $this-> put('subtotal'),
             'material_id' => $this->put('material_id'),
             'purchase_id' => $this->put('purchase_id')
