@@ -40,15 +40,15 @@ class Purchase_details_Model extends CI_Model
             $this->db->from('purchases');
             $this->db->where('purchase_id', $data['purchase_id']);
             $this->db->select('total');
-            $currentTotal = $this->db->get()->row_array();
+            $currentTotal = $this->db->get()->row();
             
-            $currentTotal += $data['subtotal'];
+            $currentTotal = intval($currentTotal->total) + $data['subtotal'];
 
             $this->db->update('purchases', [
                 'total' => $currentTotal
             ], ['purchase_id' => $data['purchase_id']]);
 
-            $rowUpdatePurchases = $this->db->affected_rows();
+            return 1;
         }
         if ($data['jenisPost'] == "radioUpdate") {
             $this->db->insert($this->_table, [

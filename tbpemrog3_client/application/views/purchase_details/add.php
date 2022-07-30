@@ -44,7 +44,7 @@
                     <!-- Tambah Material Baru -->
                     <div class="col-md-6 mt-2" id="inputMaterialId">                    
                         <label for="">ID Material</label>
-                        <input type="number" class="form-control" name="material_id">                   
+                        <input type="number" class="form-control" name="material_id1">                   
                     </div>
                     <div class="col-md-6 mt-2" id="inputMaterialName">                    
                         <label for="">Nama Material Baru</label>
@@ -67,7 +67,7 @@
                     <!-- Update Material -->
                     <div class="col-md-6 mt-2" id="selectMaterialName">                    
                         <label for="">Nama Material</label>
-                        <select class="form-control" name="material_id">
+                        <select class="form-control" name="material_id2">
                             <option value="">---Pilih Material---</option>
                             <?php foreach($data_materials as $dm): ?>
                                 <option value="<?= $dm['material_id'] ?>"><?= $dm['name'] ?></option>
