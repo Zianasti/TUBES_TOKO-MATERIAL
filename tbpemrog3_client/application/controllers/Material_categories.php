@@ -7,32 +7,27 @@ class Material_categories extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Material_Categories_model'); 
+        $this->load->model('Material_categories_model'); 
         $this->load->library('form_validation'); //load fom validation
+        $this->load->library('session'); //load session
     }
 
     public function index()
     {
         $data['title'] = "List Data Material Categories";
 
-        $data['data_material_categories'] = $this->Material_Categories_model->getAll();
+        $data['data_material_categories'] = $this->Material_categories_model->getAll();
 
-        $this->load->view('templates/header',$data);
-        $this->load->view('templates/menu');
-        $this->load->view('material_categories/index',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('Material_Categories/index',$data);
     }
 
     public function detail($id)
     {
         $data['title'] = "Detail Data Material Categories";
 
-        $data['data_material_categories'] = $this->Material_Categories_model->getById($id);
+        $data['data_material_categories'] = $this->Material_categories_model->getById($id);
 
-        $this->load->view('templates/header',$data);
-        $this->load->view('templates/menu');
         $this->load->view('material_categories/detail',$data);
-        $this->load->view('templates/footer');
     }
 
     public function add()
@@ -43,10 +38,7 @@ class Material_categories extends CI_Controller
         $this->form_validation->set_rules('name','NAME','trim|required');
 
         if($this->form_validation->run()==false){
-            $this->load->view('templates/header',$data);
-            $this->load->view('templates/menu');
             $this->load->view('material_categories/add',$data);
-            $this->load->view('templates/footer');
         }else {
             $data = [
                 "category_id" => $this->input->post('category_id'),
@@ -54,7 +46,7 @@ class Material_categories extends CI_Controller
                 "KEY" => "ulbi123"
             ];
  
-            $insert = $this->Material_Categories_model->save($data);
+            $insert = $this->Material_categories_model->save($data);
             if($insert['response_code']===201){
                 $this->session->set_flashdata('flash','Data Ditambahkan');
                 redirect('material_categories');
@@ -72,27 +64,25 @@ class Material_categories extends CI_Controller
 
     public function update($id)
     {
+
         $data['title'] = "Ubah Data Material Category";
-        $data['data_material_categories'] = $this->Material_Categories_model->getById($id);
+        $data['data_material_categories'] = $this->Material_categories_model->getById($id);
 
         $this->form_validation->set_rules('category_id','Category id','trim|required|numeric');
         $this->form_validation->set_rules('name','NAME','trim|required');
 
         if($this->form_validation->run()==false){
-            $this->load->view('templates/header',$data);
-            $this->load->view('templates/menu');
             $this->load->view('material_categories/edit',$data);
-            $this->load->view('templates/footer');
         }else {
             $data = [
-                "category_id" => $this->input->post('category_id'),
-                "name" => $this->input->post('name'),
+                'category_id' => $this->input->post('category_id'),
+                'name' => $this->input->post('name'),
                 "KEY" => "ulbi123"
             ];
 
-            $update = $this->Material_Categories_model->update($data);
+            $update = $this->Material_categories_model->update($data);
             if($update['response_code']===201){
-                $this->session->set_flashdata('flash','Data Ditambahkan');
+                $this->session->set_flashdata('flash','Data Diedit');
                 redirect('material_categories');
             }elseif ($update['response_code']===400) {
                 $this->session->set_flashdata('message','Data Duplikat');
@@ -108,7 +98,7 @@ class Material_categories extends CI_Controller
 
     public function delete($id)
     {
-        $update = $this->Material_Categories_model->delete($id);
+        $update = $this->Material_categories_model->delete($id);
             if($update['response_code']===200){
                 $this->session->set_flashdata('flash','Dihapus');
                 redirect('Material_Categories');

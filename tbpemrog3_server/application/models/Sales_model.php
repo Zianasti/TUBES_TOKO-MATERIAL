@@ -11,7 +11,7 @@ class Sales_Model extends CI_Model
             $this->db->where('sale_id',$id);
         }
         $this->db->join('employees','employees.employee_id = sales.employee_id');
-        $this->db->select('sale_id, date, pay, total, money_change, employees.name');
+        $this->db->select('sale_id, date, pay, total, money_change, employees.employee_id, employees.name');
         $query = $this->db->get()->result_array();
         return $query;
     }

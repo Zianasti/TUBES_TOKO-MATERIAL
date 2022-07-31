@@ -6,7 +6,7 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Data Material Categories</h3>
+                <h3>Data Material</h3>
             </div>
             <hr>
             <div class="row">
@@ -23,23 +23,25 @@
                     <?php endif; ?>
                     <!-- /Alert kalau ada pesan dari controller -->
 
-                    <a href="<?= base_url('material_categories/add') ?>" class="btn btn-success">Tambah Data</a>
+                    <a href="<?= base_url('materials/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Kategori</th>
-                            <th>Nama Kategori</th>
+                            <th>ID Material</th>
+                            <th>Nama</th>
+                            <th>Stok</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php foreach($data_material_categories as $mc): ?>
+                    <?php foreach($data_materials as $dm): ?>
                         <tr>
-                            <td><?= $mc['category_id'] ?></td>
-                            <td><?= $mc['name'] ?></td>
+                            <td><?= $dm['material_id'] ?></td>
+                            <td><?= $dm['name'] ?></td>
+                            <td><?= $dm['stock'] ?></td>
                             <td>
-                            <a href="<?= base_url('material_categories/detail/'.$mc['category_id'])?>" class="btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
+                            <a href="<?= base_url('materials/detail/'.$dm['material_id'])?>" class="btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
                                 
-                            <a href="<?= base_url('material_categories/update/'.$mc['category_id'])?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                <form action="<?= base_url('material_categories/delete/').$mc['category_id'] ?>" id="formDelete<?= $mc['category_id'] ?>">
-                                    <a href="#" onclick="deleteConfirmation(<?= $mc['category_id'] ?>)" class="btn btn-danger btn-sm">
+                            <a href="<?= base_url('materials/update/'.$dm['material_id'])?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                <form action="<?= base_url('materials/delete/').$dm['material_id'] ?>" id="formDelete<?= $dm['material_id'] ?>">
+                                    <a href="#" onclick="deleteConfirmation(<?= $dm['material_id'] ?>)" class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </form>    

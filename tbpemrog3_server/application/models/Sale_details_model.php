@@ -19,8 +19,30 @@ class Sale_details_Model extends CI_Model
 
     public function insert ($data)
     {
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
+        if ($data) {
+            $this->db->insert($this->_table, [
+                'sale_detail_id' => $data['sale_detail_id'],
+                'qty' => $data['qty'],
+                'disc' => $data['disc'],
+                'subtotal' => $data['subtotal'],
+                'material_id' => $data['material_id'],
+                'sale_id' => $data['sale_id']
+            ]);
+
+            $this->db->from('materials');
+            $this->db->where('material_id', $data['material_id']);
+            $this->db->select('stock');
+            $currentStock = $this->db->get()->row();
+
+            //update jumlah stock diambil dari qty yang baru diinput
+            $currentStock = intval($currentStock->stock) - $data['qty'];
+
+            $this->db->update('materials',[
+                'stock' => $currentStock
+            ], ['material_id' => $data['material_id']]);
+
+            return 1;
+        }
     }
 
     public function update ($data,$id)
