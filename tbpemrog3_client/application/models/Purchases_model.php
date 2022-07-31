@@ -42,6 +42,23 @@ class Purchases_model extends CI_Model
         return $result['data'];
     }
 
+    public function getPurchaseDetails($id) {
+        $getPurchaseDetails = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/purchase_details'
+        ]);
+
+        $response = $getPurchaseDetails->request('GET', '', [
+            'query' => [
+                // 'KEY' => 'ulbi123',
+                'purchase_id' => $id
+            ]
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(), TRUE);
+
+        return $result['data'];
+    }
+
     public function getById($id) {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
