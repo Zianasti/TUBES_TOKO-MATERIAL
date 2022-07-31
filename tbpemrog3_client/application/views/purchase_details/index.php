@@ -49,11 +49,11 @@
                                 <a href="<?= base_url('purchase_details/edit/').$drp['purchase_detail_id'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fa fa-edit"></i>
                                 </a>  
-                                <form action="<?= base_url('purchase_details/delete/').$drp['purchase_detail_id'] ?>" id="formDelete<?= $drp['purchase_detail_id'] ?>">
+                                <!-- <form action="<?= base_url('purchase_details/delete/').$drp['purchase_detail_id'] ?>" id="formDelete<?= $drp['purchase_detail_id'] ?>">
                                     <a href="#" onclick="deleteConfirmation(<?= $drp['purchase_detail_id'] ?>)" class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"></i>
                                     </a>
-                                </form>                             
+                                </form>                              -->
                             </td>
                         </tr>
                     <?php endforeach; ?>
