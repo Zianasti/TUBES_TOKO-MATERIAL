@@ -6,7 +6,7 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Ubah Data Pembelian</h3>
+                <h3>Rincian Data Pembelian</h3>
             </div>
             <!-- Alert kalau ada pesan dari controller -->
                 <?php if ($this->session->flashdata('message')) : ?>
@@ -20,29 +20,29 @@
             <!-- /Alert kalau ada pesan dari controller -->
             <hr>
             <div class="row mt-2">
-                <?php foreach($data_pembelian as $dp): ?>
+                <?php foreach($data_rincian_pembelian as $drp): ?>
                 <div class="col-md-6">                    
-                    <h5 for="">ID Pembelian</h5>
-                    <p><?= $dp['purchase_id'] ?></p>               
+                    <h5 for="">ID Rincian Pembelian</h5>
+                    <p><?= $drp['purchase_detail_id'] ?></p>               
                 </div>
                 <div class="col-md-12 mt-2">                    
-                    <h5 for="">Tanggal</h5>
-                    <p><?= $dp['date'] ?></p>                     
+                    <h5 for="">Nama Material</h5>
+                    <p><?= $drp['name'] ?></p>                     
                 </div>
                 <div class="col-md-12 mt-2">                    
-                    <h5 for="">Total</h5>
-                    <p><?= $dp['total'] ?></p>                      
+                    <h5 for="">Jumlah</h5>
+                    <p><?= $drp['qty'] ?></p>                      
                 </div>
                 <div class="col-md-12 mt-2">                    
-                    <h5 for="">Deskripsi</h5>
-                    <p><?= $dp['description'] ?></p>                 
+                    <h5 for="">Harga Beli</h5>
+                    <p><?= $drp['cost'] ?></p>                 
                 </div>
                 <div class="col-md-12 mt-2">                    
-                    <h5 for="">Supplier</h5>
-                    <p><?= $dp['name'] ?></p>                 
+                    <h5 for="">Subtotal</h5>
+                    <p><?= $drp['subtotal'] ?></p>                 
                 </div>
                 <div class="col-md-12">
-                    <a href="<?= base_url('purchases') ?>" class="btn btn-secondary mt-2">Kembali</a>
+                    <a href="<?= base_url('purchase_details') ?>" class="btn btn-secondary mt-2">Kembali</a>
                 </div>
                 <?php endforeach; ?>
             </div>

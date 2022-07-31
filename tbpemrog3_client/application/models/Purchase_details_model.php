@@ -70,7 +70,7 @@ class Purchase_details_model extends CI_Model
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
                 // 'KEY' => 'ulbi123',
-                'purchase_id' => $id
+                'purchase_detail_id' => $id
             ]
         ]);
 
