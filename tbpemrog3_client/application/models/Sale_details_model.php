@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 use GuzzleHttp\Client;
 
-class Sales_model extends CI_Model
+class Sale_details_model extends CI_Model
 {
 
     private $_guzzle;
@@ -12,7 +12,7 @@ class Sales_model extends CI_Model
     {
         parent::__construct();
         $this->_guzzle = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sales',
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sale_details',
             // 'auth'  => ['ulbi', 'pemrograman3']
         ]);
     }
@@ -30,14 +30,38 @@ class Sales_model extends CI_Model
         return $result['data'];
     }
 
-    public function getEmployees() {
-        $getSupplier = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/employees'
+    public function getSales() {
+        $getSales = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sales'
         ]);
 
-        $response = $getSupplier->request('GET', '');
+        $response = $getSales->request('GET', '');
 
         $result = json_decode($response->getBody()->getContents(), TRUE);
+
+        return $result['data'];
+    }
+
+    public function getMaterialCategories() {
+        $getMaterialCategories = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories'
+        ]);
+
+        $response = $getMaterialCategories->request('GET', '');
+
+        $result = json_decode($response->getBody()->getContents(),TRUE);
+
+        return $result['data'];
+    }
+
+    public function getMaterials() {
+        $getMaterials = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/materials'
+        ]);
+
+        $response = $getMaterials->request('GET', '');
+
+        $result = json_decode($response->getBody()->getContents(),TRUE);
 
         return $result['data'];
     }
@@ -46,7 +70,7 @@ class Sales_model extends CI_Model
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
                 // 'KEY' => 'ulbi123',
-                'sale_id' => $id
+                'sale_detail_id' => $id
             ]
         ]);
 
@@ -56,6 +80,17 @@ class Sales_model extends CI_Model
     }
 
     public function save($data) {
+        $response = $this->_guzzle->request('POST', '', [
+            'http_errors' => false,
+            'form_params' => $data
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(), TRUE);
+
+        return $result;
+    }
+
+    public function saveExisting($data) {
         $response = $this->_guzzle->request('POST', '', [
             'http_errors' => false,
             'form_params' => $data
@@ -91,4 +126,3 @@ class Sales_model extends CI_Model
         return $result;
     }
 }
-
