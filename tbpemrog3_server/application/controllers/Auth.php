@@ -8,9 +8,9 @@ use chriskacerguis\RestServer\RestController;
 
 class Auth extends RestController
 {
-    public function __construct()
+    public function __construct($config = 'restnokey')
     {
-        parent::__construct();
+        parent::__construct($config);
         $this->load->model('Auth_model');
     }
 
