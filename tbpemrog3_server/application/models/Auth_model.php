@@ -14,9 +14,25 @@ class Auth_Model extends CI_Model{
         return $query;
     }
 
-    public function insert($data)
+    public function register($data)
     {
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
+        $this->db->insert('employees', [
+            'employee_id' => '',
+            'name' => $data['name'],
+            'dob' => $data['dob'],
+            'gender' => $data['gender'],
+            'email' => $data['email']
+        ]);
+
+        $newEmployeeId = $this->db->insert_id();
+
+        $this->db->insert($this->_table, [
+            'user_id' => '',
+            'username' => $data['username'],
+            'password' => $data['password'],
+            'employee_id' => $newEmployeeId,
+        ]);
+        $query = $this->db->affected_rows();
+        return $query;
     }
 }

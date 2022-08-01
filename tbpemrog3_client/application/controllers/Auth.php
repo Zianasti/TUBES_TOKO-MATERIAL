@@ -39,4 +39,28 @@ class Auth extends CI_Controller {
 	{
 		$this->load->view('register');
 	}
+
+	public function registerAttempt()
+	{
+		$data = [
+			"name" => $this->input->post('name'),
+			"dob" => $this->input->post('dob'),
+			"gender" => $this->input->post('gender'),
+			"email" => $this->input->post('email'),
+			"username" => $this->input->post('username'),
+			"password" => $this->input->post('password'),
+		];
+
+		$insert = $this->Auth_model->registerAttempt($data);
+		if($insert['status'] == 'Register Berhasil'){
+			$this->session->set_flashdata('flash','Register Berhasil!');
+			redirect('dashboard');
+		}elseif ($insert['status'] == 'Register Gagal') {
+			$this->session->set_flashdata('message','Inputan tidak boleh ada yang kosong!');
+			redirect('auth/register');
+		}else{
+			$this->session->set_flashdata('message', 'Register Error!');
+			redirect('auth/register');
+		}
+	}
 }

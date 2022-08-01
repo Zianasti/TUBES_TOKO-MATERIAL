@@ -119,6 +119,7 @@
 							/>
 							<input type="submit" class="btn btn-dark btn-block" value="Masuk"></input>
 							</form>
+							<a href="<?= base_url('auth/register') ?>">Buat Akun</a>
 						</div>
 					</div>
 				</div>

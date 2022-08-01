@@ -85,6 +85,16 @@
 					</li>
 				</ul>
 				<div class="tab-content" id="pills-tabContent">
+					<!-- Alert kalau ada pesan dari controller -->
+                    <?php if ($this->session->flashdata('message')) : ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error! <?= $this->session->flashdata('message'); ?>
+                            <button type="button" class="close" data-dismiss="alert" arialabel="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                    <!-- /Alert kalau ada pesan dari controller -->
 					<div
 						class="tab-pane fade show active"
 						id="pills-profile"
@@ -92,6 +102,7 @@
 						aria-labelledby="pills-profile-tab"
 					>
 						<div class="form px-4">
+							<form action="<?= base_url('auth/registerAttempt') ?>" method="post">
 							<input
 								type="text"
 								name="name"
@@ -134,7 +145,8 @@
 								placeholder="Password"
 							/>
 
-							<button class="btn btn-dark btn-block">Daftar</button>
+							<input type="submit" class="btn btn-dark btn-block" value="Daftar">
+							</form>
 						</div>
 					</div>
 				</div>
