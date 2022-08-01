@@ -11,18 +11,16 @@ class Suppliers_model extends CI_Model {
     {
         parent::__construct();
         $this->_guzzle = new Client([
-            // Base URI is used with relative requests
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/suppliers',
-            // You can set any number of default request options.
-            'auth'  => ['ulbi','pemrograman3'],
+            'auth'  => ['user','password'],
         ]);
     }
 
-    public function getAll()
+    public function getAll($key)
     {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
-                'KEY' => 'ulbi123'
+                'KEY' => $key
                 ]
         ]);
 
@@ -31,11 +29,11 @@ class Suppliers_model extends CI_Model {
         return $result['data'];
     }
 
-    public function getById($id)
+    public function getById($id,$key)
     {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
-                'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'supplier_id' => $id
                 ]
         ]);

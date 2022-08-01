@@ -7,16 +7,18 @@ class Sales extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Sales_model'); //load model sales
-        $this->load->library('form_validation'); //load form validation
-        $this->load->library('session'); //load session
+        $this->load->model('Sales_model');
+        $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['title'] = "List Data Penjualan";
 
-        $data['data_penjualan'] = $this->Sales_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_penjualan'] = $this->Sales_model->getAll($key);
 
         $this->load->view('sales/index', $data);
     }
@@ -25,7 +27,9 @@ class Sales extends CI_Controller
     {
         $data['title'] = "List Data Penjualan";
 
-        $data['data_penjualan'] = $this->Sales_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_penjualan'] = $this->Sales_model->getById($id,$key);
 
         $this->load->view('sales/detail', $data);
     }
@@ -42,7 +46,9 @@ class Sales extends CI_Controller
         $this->form_validation->set_rules('employee_id', 'employee_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
-            $data['data_employees'] = $this->Sales_model->getEmployees();
+            $key = $this->session->userdata('KEY');
+
+            $data['data_employees'] = $this->Sales_model->getEmployees($key);
 
             $this->load->view('sales/add', $data);
         } else {

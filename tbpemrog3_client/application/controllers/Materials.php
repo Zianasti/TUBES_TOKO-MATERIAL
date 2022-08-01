@@ -8,15 +8,17 @@ class Materials extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Materials_model'); 
-        $this->load->library('form_validation'); //load fom validation
-        $this->load->library('session'); //load session
+        $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['title'] = "List Data Material";
 
-        $data['data_materials'] = $this->Materials_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_materials'] = $this->Materials_model->getAll($key);
 
         $this->load->view('Materials/index',$data);
     }
@@ -25,7 +27,9 @@ class Materials extends CI_Controller
     {
         $data['title'] = "Detail Data Materials";
 
-        $data['data_materials'] = $this->Materials_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_materials'] = $this->Materials_model->getById($id,$key);
 
         $this->load->view('materials/detail',$data);
     }

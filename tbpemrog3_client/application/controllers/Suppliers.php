@@ -8,15 +8,17 @@ class Suppliers extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Suppliers_model'); 
-        $this->load->library('form_validation'); //load fom validation
-        $this->load->library('session'); //load session
+        $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['title'] = "List Data Pemasok";
 
-        $data['data_suppliers'] = $this->Suppliers_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_suppliers'] = $this->Suppliers_model->getAll($key);
 
         $this->load->view('Suppliers/index',$data);
     }
@@ -25,7 +27,9 @@ class Suppliers extends CI_Controller
     {
         $data['title'] = "Detail Data Pemasok";
 
-        $data['data_suppliers'] = $this->Suppliers_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_suppliers'] = $this->Suppliers_model->getById($id,$key);
 
         $this->load->view('suppliers/detail',$data);
     }

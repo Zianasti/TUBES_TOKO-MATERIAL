@@ -7,16 +7,18 @@ class Purchases extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Purchases_model'); //load model purchases
-        $this->load->library('form_validation'); //load form validation
-        $this->load->library('session'); //load session
+        $this->load->model('Purchases_model');
+        $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['title'] = "List Data Pembelian";
 
-        $data['data_pembelian'] = $this->Purchases_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_pembelian'] = $this->Purchases_model->getAll($key);
 
         $this->load->view('purchases/index', $data);
     }
@@ -25,7 +27,9 @@ class Purchases extends CI_Controller
     {
         $data['title'] = "List Data Pembelian";
 
-        $data['data_pembelian'] = $this->Purchases_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_pembelian'] = $this->Purchases_model->getById($id,$key);
 
         $this->load->view('purchases/detail', $data);
     }

@@ -8,15 +8,17 @@ class Material_categories extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Material_categories_model'); 
-        $this->load->library('form_validation'); //load fom validation
-        $this->load->library('session'); //load session
+        $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['title'] = "List Data Material Categories";
 
-        $data['data_material_categories'] = $this->Material_categories_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_material_categories'] = $this->Material_categories_model->getAll($key);
 
         $this->load->view('Material_Categories/index',$data);
     }
@@ -25,7 +27,9 @@ class Material_categories extends CI_Controller
     {
         $data['title'] = "Detail Data Material Categories";
 
-        $data['data_material_categories'] = $this->Material_categories_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_material_categories'] = $this->Material_categories_model->getById($id,$key);
 
         $this->load->view('material_categories/detail',$data);
     }

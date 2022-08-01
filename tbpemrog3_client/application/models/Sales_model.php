@@ -13,16 +13,16 @@ class Sales_model extends CI_Model
         parent::__construct();
         $this->_guzzle = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sales',
-            // 'auth'  => ['ulbi', 'pemrograman3']
+            'auth'  => ['user', 'password'],
         ]);
     }
 
-    public function getAll()
+    public function getAll($key)
     {
         $response = $this->_guzzle->request('GET', '', [
-            // 'query' => [
-            //     'KEY' => 'ulbi123'
-            // ]
+            'query' => [
+                'KEY' => $key
+            ]
         ]);
 
         $result = json_decode($response->getBody()->getContents(), TRUE);
@@ -30,22 +30,26 @@ class Sales_model extends CI_Model
         return $result['data'];
     }
 
-    public function getEmployees() {
+    public function getEmployees($key) {
         $getSupplier = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/employees'
         ]);
 
-        $response = $getSupplier->request('GET', '');
+        $response = $getSupplier->request('GET', '', [
+            'query' => [
+                'KEY' => $key,
+            ]
+        ]);
 
         $result = json_decode($response->getBody()->getContents(), TRUE);
 
         return $result['data'];
     }
 
-    public function getById($id) {
+    public function getById($id,$key) {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
-                // 'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'sale_id' => $id
             ]
         ]);

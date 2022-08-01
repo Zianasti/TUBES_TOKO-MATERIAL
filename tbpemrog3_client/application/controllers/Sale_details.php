@@ -7,16 +7,18 @@ class Sale_details extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Sale_details_model'); //load model sale_details
-        $this->load->library('form_validation'); //load form validation
-        $this->load->library('session'); //load session
+        $this->load->model('Sale_details_model');
+        $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['title'] = "List Data Rincian Penjualan";
 
-        $data['data_rincian_penjualan'] = $this->Sale_details_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_rincian_penjualan'] = $this->Sale_details_model->getAll($key);
 
         $this->load->view('sale_details/index', $data);
     }
@@ -25,7 +27,9 @@ class Sale_details extends CI_Controller
     {
         $data['title'] = "List Data Rincian Penjualan";
 
-        $data['data_rincian_penjualan'] = $this->Sale_details_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_rincian_penjualan'] = $this->Sale_details_model->getById($id,$key);
 
         $this->load->view('sale_details/detail', $data);
     }
@@ -43,8 +47,9 @@ class Sale_details extends CI_Controller
 
         if ($this->form_validation->run()==false) {
 
-            $data['data_penjualan'] = $this->Sale_details_model->getSales();
-            $data['data_materials'] = $this->Sale_details_model->getMaterials();
+            $key = $this->session->userdata('KEY');
+            $data['data_penjualan'] = $this->Sale_details_model->getSales($key);
+            $data['data_materials'] = $this->Sale_details_model->getMaterials($key);
 
             $this->load->view('sale_details/add', $data);
         } else {

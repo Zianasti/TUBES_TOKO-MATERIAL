@@ -13,16 +13,16 @@ class Purchase_details_model extends CI_Model
         parent::__construct();
         $this->_guzzle = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/purchase_details',
-            // 'auth'  => ['ulbi', 'pemrograman3']
+            'auth'  => ['user', 'password'],
         ]);
     }
 
-    public function getAll()
+    public function getAll($key)
     {
         $response = $this->_guzzle->request('GET', '', [
-            // 'query' => [
-            //     'KEY' => 'ulbi123'
-            // ]
+            'query' => [
+                'KEY' => $key
+            ]
         ]);
 
         $result = json_decode($response->getBody()->getContents(), TRUE);
@@ -30,46 +30,58 @@ class Purchase_details_model extends CI_Model
         return $result['data'];
     }
 
-    public function getPurchases() {
+    public function getPurchases($key) {
         $getPurchases = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/purchases'
         ]);
 
-        $response = $getPurchases->request('GET', '');
+        $response = $getPurchases->request('GET', '', [
+            'query' => [
+                'KEY' => $key
+            ]
+        ]);
 
         $result = json_decode($response->getBody()->getContents(), TRUE);
 
         return $result['data'];
     }
 
-    public function getMaterialCategories() {
+    public function getMaterialCategories($key) {
         $getMaterialCategories = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories'
         ]);
 
-        $response = $getMaterialCategories->request('GET', '');
+        $response = $getMaterialCategories->request('GET', '', [
+            'query' => [
+                'KEY' => $key
+            ]
+        ]);
 
         $result = json_decode($response->getBody()->getContents(),TRUE);
 
         return $result['data'];
     }
 
-    public function getMaterials() {
+    public function getMaterials($key) {
         $getMaterials = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/materials'
         ]);
 
-        $response = $getMaterials->request('GET', '');
+        $response = $getMaterials->request('GET', '', [
+            'query' => [
+                'KEY' => $key
+            ]
+        ]);
 
         $result = json_decode($response->getBody()->getContents(),TRUE);
 
         return $result['data'];
     }
 
-    public function getById($id) {
+    public function getById($id,$key) {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
-                // 'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'purchase_detail_id' => $id
             ]
         ]);

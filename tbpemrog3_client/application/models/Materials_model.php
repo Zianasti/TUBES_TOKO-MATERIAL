@@ -11,18 +11,16 @@ class Materials_model extends CI_Model {
     {
         parent::__construct();
         $this->_guzzle = new Client([
-            // Base URI is used with relative requests
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/materials',
-            // You can set any number of default request options.
-            'auth'  => ['ulbi','pemrograman3'],
+            'auth'  => ['user','password'],
         ]);
     }
 
-    public function getAll()
+    public function getAll($key)
     {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
-                'KEY' => 'ulbi123'
+                'KEY' => $key
                 ]
         ]);
 
@@ -31,23 +29,27 @@ class Materials_model extends CI_Model {
         return $result['data'];
     }
 
-    public function getMaterialCategories() {
+    public function getMaterialCategories($key) {
         $getCategory = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories'
         ]);
 
-        $response = $getCategory->request('GET', '');
+        $response = $getCategory->request('GET', '', [
+            'query' => [
+                'KEY' => $key
+                ]
+        ]);
 
         $result = json_decode($response->getBody()->getContents(), TRUE);
 
         return $result['data'];
     }
 
-    public function getById($id)
+    public function getById($id,$key)
     {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [
-                'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'material_id' => $id
                 ]
         ]);

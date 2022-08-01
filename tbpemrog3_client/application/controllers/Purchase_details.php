@@ -16,7 +16,9 @@ class Purchase_details extends CI_Controller
     {
         $data['title'] = "List Data Rincian Pembelian";
 
-        $data['data_rincian_pembelian'] = $this->Purchase_details_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_rincian_pembelian'] = $this->Purchase_details_model->getAll($key);
 
         $this->load->view('purchase_details/index', $data);
     }
@@ -25,7 +27,9 @@ class Purchase_details extends CI_Controller
     {
         $data['title'] = "List Data Rincian Pembelian";
 
-        $data['data_rincian_pembelian'] = $this->Purchase_details_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_rincian_pembelian'] = $this->Purchase_details_model->getById($id,$key);
 
         $this->load->view('purchase_details/detail', $data);
     }
@@ -57,9 +61,11 @@ class Purchase_details extends CI_Controller
         }
 
         if ($this->form_validation->run()==false) {
-            $data['data_pembelian'] = $this->Purchase_details_model->getPurchases();
-            $data['data_material_categories'] = $this->Purchase_details_model->getMaterialCategories();
-            $data['data_materials'] = $this->Purchase_details_model->getMaterials();
+            $key = $this->session->userdata('KEY');
+
+            $data['data_pembelian'] = $this->Purchase_details_model->getPurchases($key);
+            $data['data_material_categories'] = $this->Purchase_details_model->getMaterialCategories($key);
+            $data['data_materials'] = $this->Purchase_details_model->getMaterials($key);
 
             $this->load->view('purchase_details/add', $data);
         } else {

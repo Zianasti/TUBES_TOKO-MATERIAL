@@ -8,15 +8,17 @@ class Employees extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Employees_model'); 
-        $this->load->library('form_validation'); //load fom validation
-        $this->load->library('session'); //load session
+        $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['title'] = "List Data Employees";
 
-        $data['data_employees'] = $this->Employees_model->getAll();
+        $key = $this->session->userdata('KEY');
+
+        $data['data_employees'] = $this->Employees_model->getAll($key);
 
         $this->load->view('Employees/index',$data);
     }
@@ -25,7 +27,9 @@ class Employees extends CI_Controller
     {
         $data['title'] = "Detail Data Employees";
 
-        $data['data_employees'] = $this->Employees_model->getById($id);
+        $key = $this->session->userdata('KEY');
+
+        $data['data_employees'] = $this->Employees_model->getById($id,$key);
 
         $this->load->view('employees/detail',$data);
     }
