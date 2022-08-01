@@ -26,6 +26,7 @@ class Purchases extends CI_Controller
         $data['title'] = "List Data Pembelian";
 
         $data['data_pembelian'] = $this->Purchases_model->getById($id);
+        $data['data_rincian_pembelian'] = $this->Purchases_model->getPurchaseDetails($id);
 
         $this->load->view('purchases/detail', $data);
     }
@@ -80,7 +81,7 @@ class Purchases extends CI_Controller
         if ($this->form_validation->run()==false) {
             $data['data_supplier'] = $this->Purchases_model->getSuppliers();
             $data['data_pembelian'] = $this->Purchases_model->getById($id);
-            $data['data_rincian_pembelian'] = $this->Purchases_model->getPurchaseDetails($id);
+            
 
             $this->load->view('purchases/edit', $data);
         } else {

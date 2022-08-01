@@ -17,7 +17,8 @@ class Sale_Details extends RestController
     public function index_get()
     {
         $id = $this->get('sale_detail_id');
-        $data = $this->Sale_details_model->get($id);
+        $id2 = $this->get('sale_id');
+        $data = $this->Sale_details_model->get($id,$id2);
 
         if($data){
             $this->response(
@@ -51,7 +52,7 @@ class Sale_Details extends RestController
             'sale_id' => $this->post('sale_id')
         );
 
-        $cek_data = $this->Sale_details_model->get($this->post('sale_detail_id'));
+        $cek_data = $this->Sale_details_model->get($this->post('sale_detail_id'),'');
 
         if ($data['sale_detail_id'] == NULL || $data['qty'] == NULL || $data['disc'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['sale_id']==NULL) {
             $this->response(

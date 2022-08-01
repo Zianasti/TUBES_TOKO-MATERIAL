@@ -42,6 +42,23 @@ class Sales_model extends CI_Model
         return $result['data'];
     }
 
+    public function getSaleDetails($id) {
+        $getSaleDetails = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sale_details'
+        ]);
+
+        $response = $getSaleDetails->request('GET', '', [
+            'query' => [
+                // 'KEY' => 'ulbi123',
+                'sale_id' => $id
+            ]
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(), TRUE);
+
+        return $result['data'];
+    }
+
     public function getById($id) {
         $response = $this->_guzzle->request('GET', '', [
             'query' => [

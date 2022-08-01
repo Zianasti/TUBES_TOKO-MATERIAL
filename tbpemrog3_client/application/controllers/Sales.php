@@ -26,6 +26,7 @@ class Sales extends CI_Controller
         $data['title'] = "List Data Penjualan";
 
         $data['data_penjualan'] = $this->Sales_model->getById($id);
+        $data['data_rincian_penjualan'] = $this->Sales_model->getSaleDetails($id);
 
         $this->load->view('sales/detail', $data);
     }
