@@ -13,7 +13,12 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('login');
+		if ($this->session->userdata('KEY') == '') {
+			$this->load->view('login');
+		}
+		else {
+			redirect('dashboard');
+		}
 	}
 
 	public function login() {
@@ -25,6 +30,7 @@ class Auth extends CI_Controller {
 		$insert = $this->Auth_model->loginAttempt($data);
 		if($insert['status'] == 'Login Berhasil'){
 			$this->session->set_flashdata('flash','Login Berhasil!');
+			$this->session->set_userdata('KEY', $insert['data']['key']);
 			redirect('dashboard');
 		}elseif ($insert['status'] == 'Login Gagal') {
 			$this->session->set_flashdata('message','Username atau Password Salah!');
@@ -33,6 +39,11 @@ class Auth extends CI_Controller {
 			$this->session->set_flashdata('message', 'Login Error!');
 			redirect('auth');
 		}
+	}
+
+	public function logout() {
+		$this->session->unset_userdata('KEY', $insert['data']['key']);
+		redirect('auth');
 	}
 
 	public function register()

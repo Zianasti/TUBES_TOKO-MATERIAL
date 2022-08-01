@@ -10,6 +10,7 @@ class Auth_Model extends CI_Model{
 
         $this->db->where('username',$username);
         $this->db->where('password',$password);
+        $this->db->join('keys','keys.user_id = users.user_id');
         $query = $this->db->get()->row_array();
         return $query;
     }
