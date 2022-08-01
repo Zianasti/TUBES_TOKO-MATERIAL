@@ -42,7 +42,7 @@ class Auth extends CI_Controller {
 	}
 
 	public function logout() {
-		$this->session->unset_userdata('KEY', $insert['data']['key']);
+		$this->session->unset_userdata('KEY');
 		redirect('auth');
 	}
 
