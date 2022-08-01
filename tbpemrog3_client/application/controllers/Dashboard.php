@@ -5,6 +5,11 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('dashboard/index');
+		if ($this->session->userdata('KEY') != '') {
+			$this->load->view('dashboard/index');
+		}
+		else {
+			redirect('auth');
+		}
 	}
 }
