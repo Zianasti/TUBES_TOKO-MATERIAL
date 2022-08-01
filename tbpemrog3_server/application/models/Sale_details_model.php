@@ -4,11 +4,14 @@ defined('BASEPATH') or exit ("No direct script access allowed");
 class Sale_details_Model extends CI_Model
 {
     private $_table = 'sale_details';
-    public function get($id)
+    public function get($id,$id2)
     {
         $this->db->from($this->_table);
         if ($id){
             $this->db->where('sale_detail_id',$id);
+        }
+        if ($id2){
+            $this->db->where('sale_details.sale_id',$id2);
         }
         $this->db->join('materials','materials.material_id = sale_details.material_id');
         $this->db->join('sales','sales.sale_id = sale_details.sale_id');
