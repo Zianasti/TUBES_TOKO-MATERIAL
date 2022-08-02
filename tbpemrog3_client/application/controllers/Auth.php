@@ -65,7 +65,7 @@ class Auth extends CI_Controller {
 		$insert = $this->Auth_model->registerAttempt($data);
 		if($insert['status'] == 'Register Berhasil'){
 			$this->session->set_flashdata('flash','Register Berhasil!');
-			redirect('dashboard');
+			$this->generateapikey($insert['data']);
 		}elseif ($insert['status'] == 'Register Gagal') {
 			$this->session->set_flashdata('message','Inputan tidak boleh ada yang kosong!');
 			redirect('auth/register');
@@ -73,5 +73,30 @@ class Auth extends CI_Controller {
 			$this->session->set_flashdata('message', 'Register Error!');
 			redirect('auth/register');
 		}
+	}
+
+	public function generateapikey($newId) {
+		$newKey['newKey'] = '';
+		$newKey['newId'] = $newId;
+		$this->load->view('generateapikey', $newKey);
+	}
+
+	public function generatekey() {
+		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charsLength = strlen($chars);
+		$keyLength = 5;
+		$newKey['newKey'] = '';
+		for ($i = 0;$i < $keyLength; $i++) {
+			$newKey['newKey'] .= $chars[rand(0, $charsLength - 1)];
+		}
+		$data = [
+			'user_id' => $this->input->post('user_id'),
+			'key' => $newKey['newKey']
+		];
+
+		$saveKey = $this->Auth_model->saveKey($data);
+		$newKey['newId'] = $this->input->post('user_id');
+
+		$this->load->view('generateapikey', $newKey);
 	}
 }

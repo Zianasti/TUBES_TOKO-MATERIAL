@@ -42,4 +42,19 @@ class Auth_model extends CI_Model {
 
         return $result;
     }
+
+    public function saveKey($data) {
+        $saveKeyUri = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/auth/savekey',
+        ]);
+
+        $response = $saveKeyUri->request('POST', '', [
+            'http_errors' => false,
+            'form_params' => $data
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(),TRUE);
+
+        return $result;
+    }
 }

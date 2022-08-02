@@ -33,7 +33,16 @@ class Auth_Model extends CI_Model{
             'password' => $data['password'],
             'employee_id' => $newEmployeeId,
         ]);
-        $query = $this->db->affected_rows();
+        $query = $this->db->insert_id();
         return $query;
+    }
+
+    public function saveKey($data){
+        $this->db->insert('keys', [
+            'user_id' => $data['user_id'],
+            'key' => $data['key']
+        ]);
+
+        return $this->db->affected_rows();
     }
 }

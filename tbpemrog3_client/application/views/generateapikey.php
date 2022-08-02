@@ -9,7 +9,7 @@
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"
 		/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
-		<title>Register</title>
+		<title>Generate API Key</title>
 	</head>
 	<style>
 		body {
@@ -80,7 +80,8 @@
 				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 					<li class="nav-item text-center">
 						<a
-							>Register</a
+
+							>Generate API Key</a
 						>
 					</li>
 				</ul>
@@ -97,56 +98,30 @@
                     <!-- /Alert kalau ada pesan dari controller -->
 					<div
 						class="tab-pane fade show active"
-						id="pills-profile"
+						id="pills-home"
 						role="tabpanel"
-						aria-labelledby="pills-profile-tab"
+						aria-labelledby="pills-home-tab"
 					>
-						<div class="form px-4">
-							<form action="<?= base_url('auth/registerAttempt') ?>" method="post">
+						<div class="form px-4 pt-5">
+							<form action="<?= base_url('auth/generatekey') ?>" method="post">
 							<input
 								type="text"
-								name="name"
+								name="key"
 								class="form-control"
-								placeholder="Nama"
+								placeholder="API Key akan muncul di sini"
+								readonly="true"
+								value="<?php 
+								if($newKey != '')
+								 echo $newKey;
+								?>"
 							/>
-
-							<input
-								type="date"
-								name="dob"
-								class="form-control"
-								placeholder="Tanggal Lahir"
-							/>
-
-							<input
-								type="text"
-								name="gender"
-								class="form-control"
-								placeholder="Jenis Kelamin"
-							/>
-
-							<input
-								type="text"
-								name="email"
-								class="form-control"
-								placeholder="Email"
-							/>
-
-							<input
-								type="text"
-								name="username"
-								class="form-control"
-								placeholder="Username"
-							/>
-
-							<input
-								type="password"
-								name="password"
-								class="form-control"
-								placeholder="Password"
-							/>
-
-							<input type="submit" class="btn btn-dark btn-block" value="Daftar">
+							<input type="hidden" name="user_id" value="<?php 
+								if($newId != '')
+								 echo $newId;
+								?>">
+							<input type="submit" class="btn btn-dark btn-block" value="Generate" <?php if($newKey != '') echo "disabled"?>></input>
 							</form>
+							<a href="<?= base_url('auth') ?>">Login</a>
 						</div>
 					</div>
 				</div>
