@@ -20,6 +20,15 @@
                     <input type="date" class="form-control" name="date">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
+                    <label for="">Nama Karyawan</label>
+                    <select name="employee_id" id="" class="form-control">
+                        <option value="">---Pilih Karyawan---</option>
+                        <?php foreach($data_employees as $de): ?>
+                            <option value="<?= $de['employee_id'] ?>"><?= $de['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>                
+                </div>
+                <div class="col-md-6 mt-2">                    
                     <label for="">Bayar</label>
                     <input type="number" class="form-control" name="pay">                   
                 </div>
@@ -31,15 +40,7 @@
                     <label for="">Uang Kembalian</label>
                     <input type="number" class="form-control" name="money_change">                   
                 </div>
-                <div class="col-md-6 mt-2">                    
-                    <label for="">Nama Karyawan</label>
-                    <select name="employee_id" id="" class="form-control">
-                        <option value="">---Pilih Karyawan---</option>
-                        <?php foreach($data_employees as $de): ?>
-                            <option value="<?= $de['employee_id'] ?>"><?= $de['name'] ?></option>
-                        <?php endforeach; ?>
-                    </select>                
-                </div>
+                
                 <div class="col-md-6">
                     <a href="<?= base_url('sales') ?>" class="btn btn-secondary mt-2">Kembali</a>
                     <input type="submit" class="btn btn-primary float-end mt-2" value="Simpan">

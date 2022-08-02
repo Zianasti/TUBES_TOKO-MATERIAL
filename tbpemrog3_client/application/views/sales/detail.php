@@ -31,6 +31,10 @@
                         <p><?= $dp['date'] ?></p>
                     </div>
                     <div class="col-md-12 mt-2">
+                        <h5 for="">Nama Karyawan</h5>
+                        <p><?= $dp['name'] ?></p>
+                    </div>
+                    <div class="col-md-12 mt-2">
                         <h5 for="">Bayar</h5>
                         <p><?= $dp['pay'] ?></p>
                     </div>
@@ -42,10 +46,7 @@
                         <h5 for="">Uang Kembalian</h5>
                         <p><?= $dp['money_change'] ?></p>
                     </div>
-                    <div class="col-md-12 mt-2">
-                        <h5 for="">Nama Karyawan</h5>
-                        <p><?= $dp['name'] ?></p>
-                    </div>
+                    
                     <div class="col-md-12">
                         <a href="<?= base_url('sales') ?>" class="btn btn-secondary mt-2">Kembali</a>
                     </div>
@@ -72,8 +73,6 @@
                             <th>Tanggal</th>
                             <th>Nama Material</th>
                             <th>Qty</th>
-                            <th>Harga</th>
-                            <th>Diskon</th>
                             <th>Subtotal</th>
                             <th>Aksi</th>
                         </tr>
@@ -83,8 +82,6 @@
                                 <td><?= $drp['date'] ?></td>
                                 <td><?= $drp['name'] ?></td>
                                 <td><?= $drp['qty'] ?></td>
-                                <td><?= $drp['price'] ?></td>
-                                <td><?= $drp['disc'] ?></td>
                                 <td><?= $drp['subtotal'] ?></td>
                                 <td>
                                     <a href="<?= base_url('sale_details/detail/') . $drp['sale_detail_id'] ?>" class="btn btn-secondary btn-sm">

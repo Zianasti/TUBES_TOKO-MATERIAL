@@ -27,17 +27,15 @@
                     <table class="table">
                         <tr>
                             <th>Tanggal</th>
-                            <th>Total</th>
-                            <th>Deskripsi</th>
                             <th>Supplier</th>
+                            <th>Total</th>
                             <th>Aksi</th>
                         </tr>
                     <?php foreach($data_pembelian as $dp): ?>
                         <tr>
                             <td><?= $dp['date'] ?></td>
-                            <td><?= $dp['total'] ?></td>
-                            <td><?= $dp['description'] ?></td>
                             <td><?= $dp['name'] ?></td>
+                            <td><?= $dp['total'] ?></td>
                             <td>
                                 <a href="<?= base_url('purchases/detail/').$dp['purchase_id'] ?>" class="btn btn-secondary btn-sm">
                                     <i class="fa fa-info"></i>

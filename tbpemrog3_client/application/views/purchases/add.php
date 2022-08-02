@@ -28,10 +28,7 @@
                     <label for="">Tanggal</label>
                     <input type="date" class="form-control" name="date">                   
                 </div>
-                <div class="col-md-6 mt-2">                    
-                    <label for="">Total</label>
-                    <input type="number" class="form-control" name="total">                   
-                </div>
+                
                 <div class="col-md-6 mt-2">                    
                     <label for="">Deskripsi</label>
                     <textarea name="description" id="" class="form-control"></textarea>                   
@@ -44,6 +41,10 @@
                             <option value="<?= $ds['supplier_id'] ?>"><?= $ds['name'] ?></option>
                         <?php endforeach; ?>
                     </select>                
+                </div>
+                <div class="col-md-6 mt-2">                    
+                    <label for="">Total</label>
+                    <input type="number" class="form-control" name="total">                   
                 </div>
                 <div class="col-md-6">
                     <a href="<?= base_url('purchases') ?>" class="btn btn-secondary mt-2">Kembali</a>

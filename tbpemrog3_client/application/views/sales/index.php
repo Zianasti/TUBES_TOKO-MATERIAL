@@ -28,20 +28,17 @@
                         <tr>
                             <th>ID Penjualan</th>
                             <th>Tanggal</th>
-                            <th>Bayar</th>
-                            <th>Total</th>
-                            <th>Uang Kembalian</th>
                             <th>Nama Karyawan</th>
+                            <th>Total</th>
                             <th>Aksi</th>
                         </tr>
                     <?php foreach($data_penjualan as $dp): ?>
                         <tr>
                             <td><?= $dp['sale_id'] ?></td>
                             <td><?= $dp['date'] ?></td>
-                            <td><?= $dp['pay'] ?></td>
-                            <td><?= $dp['total'] ?></td>
-                            <td><?= $dp['money_change'] ?></td>
                             <td><?= $dp['name'] ?></td>
+                            <td><?= $dp['total'] ?></td>
+                            
                             <td>
                                 <a href="<?= base_url('sales/detail/').$dp['sale_id'] ?>" class="btn btn-secondary btn-sm">
                                     <i class="fa fa-info"></i>

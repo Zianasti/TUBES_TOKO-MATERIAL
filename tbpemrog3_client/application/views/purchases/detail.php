@@ -29,10 +29,7 @@
                     <h5 for="">Tanggal</h5>
                     <p><?= $dp['date'] ?></p>                     
                 </div>
-                <div class="col-md-12 mt-2">                    
-                    <h5 for="">Total</h5>
-                    <p><?= $dp['total'] ?></p>                      
-                </div>
+                
                 <div class="col-md-12 mt-2">                    
                     <h5 for="">Deskripsi</h5>
                     <p><?= $dp['description'] ?></p>                 
@@ -40,6 +37,10 @@
                 <div class="col-md-12 mt-2">                    
                     <h5 for="">Supplier</h5>
                     <p><?= $dp['name'] ?></p>                 
+                </div>
+                <div class="col-md-12 mt-2">                    
+                    <h5 for="">Total</h5>
+                    <p><?= $dp['total'] ?></p>                      
                 </div>
                 <div class="col-md-12">
                     <a href="<?= base_url('purchases') ?>" class="btn btn-secondary mt-2">Kembali</a>
@@ -67,7 +68,6 @@
                             <th>Tanggal</th>
                             <th>Nama Material</th>
                             <th>Jumlah</th>
-                            <th>Harga Beli</th>
                             <th>Subtotal</th>
                             <th>Aksi</th>
                         </tr>
@@ -77,7 +77,6 @@
                             <td><?= $drp['date'] ?></td>
                             <td><?= $drp['name'] ?></td>
                             <td><?= $drp['qty'] ?></td>
-                            <td><?= $drp['cost'] ?></td>
                             <td><?= $drp['subtotal'] ?></td>
                             <td>
                                 <a href="<?= base_url('purchase_details/detail/').$drp['purchase_detail_id'] ?>" class="btn btn-secondary btn-sm">
