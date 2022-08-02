@@ -32,7 +32,8 @@ class Sale_details_model extends CI_Model
 
     public function getSales($key) {
         $getSales = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sales'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sales',
+            'auth'  => ['user', 'password']
         ]);
 
         $response = $getSales->request('GET', '', [
@@ -48,7 +49,8 @@ class Sale_details_model extends CI_Model
 
     public function getMaterialCategories($key) {
         $getMaterialCategories = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories',
+            'auth'  => ['user', 'password']
         ]);
 
         $response = $getMaterialCategories->request('GET', '', [
@@ -64,7 +66,8 @@ class Sale_details_model extends CI_Model
 
     public function getMaterials($key) {
         $getMaterials = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/materials'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/materials',
+            'auth'  => ['user', 'password']
         ]);
 
         $response = $getMaterials->request('GET', '', [
@@ -124,11 +127,11 @@ class Sale_details_model extends CI_Model
         return $result;
     }
 
-    public function delete($id) {
+    public function delete($id,$key) {
         $response = $this->_guzzle->request('DELETE', '', [
             'form_params' => [
                 'http_errors' => false,
-                // 'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'sale_id' => $id
             ]
         ]);

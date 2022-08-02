@@ -37,6 +37,7 @@ class Purchase_details extends CI_Controller
     public function add()
     {
         $data['title'] = "Tambah Data Purchase_details";
+        $key = $this->session->userdata('KEY');
 
         if ($this->input->post('radioJenis') == 'radioBaru') {
             $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -99,7 +100,7 @@ class Purchase_details extends CI_Controller
                 ];   
             }   
 
-            $insert = $this->Purchase_details_model->save($data);
+            $insert = $this->Purchase_details_model->save($data,$key);
                 if ($insert['response_code']===201 || $insert['response_code']===200) {
                     $this->session->set_flashdata('flash','Data ditambahkan');
                     redirect('Purchase_details'); 
@@ -116,7 +117,8 @@ class Purchase_details extends CI_Controller
     public function edit($id)
     {
         $data['title'] = "Ubah Data Rincian Pembelian";
-        
+        $key = $this->session->userdata('KEY');
+
         $this->form_validation->set_rules('purchase_detail_id', 'purchase_detail_id', 'trim|required');
         $this->form_validation->set_rules('qty', 'QTY', 'trim|required');
         $this->form_validation->set_rules('cost', 'cost', 'trim|required');
@@ -124,8 +126,9 @@ class Purchase_details extends CI_Controller
         $this->form_validation->set_rules('material_id', 'material_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
-            $data['data_rincian_pembelian'] = $this->Purchase_details_model->getSuppliers();
-            $data['data_rincian_pembelian'] = $this->Purchase_details_model->getById($id);
+            $key = $this->session->userdata('KEY');
+            $data['data_pemasok'] = $this->Purchase_details_model->getSuppliers($key);
+            $data['data_rincian_pembelian'] = $this->Purchase_details_model->getById($id,$key);
 
             $this->load->view('purchase_details/edit', $data);
         } else {
@@ -137,7 +140,7 @@ class Purchase_details extends CI_Controller
                 'material_id' => $this->input->post('material_id'),
             ];
 
-            $upqty = $this->Purchase_details_model->upqty($data);
+            $upqty = $this->Purchase_details_model->upqty($data,$key);
             if ($upqty['response_code']===201) {
                 $this->session->set_flashdata('flash','Data diubah');
                 redirect('Purchase_details'); 
@@ -153,7 +156,8 @@ class Purchase_details extends CI_Controller
 
     public function delete($id)
     {
-        $delete = $this->Purchase_details_model->delete($id);
+        $key = $this->session->userdata('KEY');
+        $delete = $this->Purchase_details_model->delete($id,$key);
             if ($delete['response_code']===200) {
                 $this->session->set_flashdata('flash','Data dihapus');
                 redirect('Purchase_details'); 

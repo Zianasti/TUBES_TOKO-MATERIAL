@@ -30,6 +30,7 @@
                     <input type="text" class="form-control" name="dob" id="dob" value=" <?= $data_employees['dob']; ?>">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
+                <label for="">Jenis Kelamin</label>
                 <select type="text" class="form-control" name="gender">
                     <option value="<?= $data_employees['gender']; ?>"><?= $data_employees['gender']; ?></option>
                     <option value="laki-Laki">Laki-laki</option>

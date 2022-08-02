@@ -46,7 +46,7 @@
                     <p><?= $drp['subtotal'] ?></p>                 
                 </div>
                 <div class="col-md-12">
-                    <a href="<?= base_url('sale_details') ?>" class="btn btn-secondary mt-2">Kembali</a>
+                    <a href="<?= base_url('sales') ?>" class="btn btn-secondary mt-2">Kembali</a>
                 </div>
                 <?php endforeach; ?>
             </div>

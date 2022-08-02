@@ -30,6 +30,8 @@ class Purchases extends CI_Controller
         $key = $this->session->userdata('KEY');
 
         $data['data_pembelian'] = $this->Purchases_model->getById($id,$key);
+        $data['data_rincian_pembelian'] = $this->Purchases_model->getPurchaseDetails($id,$key);
+
 
         $this->load->view('purchases/detail', $data);
     }
@@ -37,6 +39,7 @@ class Purchases extends CI_Controller
     public function add()
     {
         $data['title'] = "Tambah Data Purchases";
+        $key = $this->session->userdata('KEY');
 
         $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
         $this->form_validation->set_rules('date', 'DATE', 'trim|required');
@@ -45,7 +48,7 @@ class Purchases extends CI_Controller
         $this->form_validation->set_rules('supplier_id', 'supplier_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
-            $data['data_supplier'] = $this->Purchases_model->getSuppliers();
+            $data['data_supplier'] = $this->Purchases_model->getSuppliers($key);
 
             $this->load->view('purchases/add', $data);
         } else {
@@ -55,9 +58,10 @@ class Purchases extends CI_Controller
                 'total' => $this->input->post('total'),
                 'description' => $this->input->post('description'),
                 'supplier_id' => $this->input->post('supplier_id'),
+                'KEY' => $key
             ];
 
-            $insert = $this->Purchases_model->save($data);
+            $insert = $this->Purchases_model->save($data,$key);
             if ($insert['response_code']===201) {
                 $this->session->set_flashdata('flash','Data ditambahkan');
                 redirect('Purchases'); 
@@ -74,7 +78,8 @@ class Purchases extends CI_Controller
     public function edit($id)
     {
         $data['title'] = "Ubah Data Pembelian";
-        
+        $key = $this->session->userdata('KEY');
+
         $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
         $this->form_validation->set_rules('date', 'DATE', 'trim|required');
         $this->form_validation->set_rules('total', 'total', 'trim|required');
@@ -82,8 +87,9 @@ class Purchases extends CI_Controller
         $this->form_validation->set_rules('supplier_id', 'supplier_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
-            $data['data_supplier'] = $this->Purchases_model->getSuppliers();
-            $data['data_pembelian'] = $this->Purchases_model->getById($id);
+            $key = $this->session->userdata('KEY');
+            $data['data_supplier'] = $this->Purchases_model->getSuppliers($key);
+            $data['data_pembelian'] = $this->Purchases_model->getById($id,$key);
             
 
             $this->load->view('purchases/edit', $data);
@@ -94,9 +100,10 @@ class Purchases extends CI_Controller
                 'total' => $this->input->post('total'),
                 'description' => $this->input->post('description'),
                 'supplier_id' => $this->input->post('supplier_id'),
+                'KEY' => $key
             ];
 
-            $update = $this->Purchases_model->update($data);
+            $update = $this->Purchases_model->update($data,$key);
             if ($update['response_code']===201) {
                 $this->session->set_flashdata('flash','Data diubah');
                 redirect('Purchases'); 
@@ -112,7 +119,8 @@ class Purchases extends CI_Controller
 
     public function delete($id)
     {
-        $delete = $this->Purchases_model->delete($id);
+        $key = $this->session->userdata('KEY');
+        $delete = $this->Purchases_model->delete($id,$key);
             if ($delete['response_code']===200) {
                 $this->session->set_flashdata('flash','Data dihapus');
                 redirect('Purchases'); 

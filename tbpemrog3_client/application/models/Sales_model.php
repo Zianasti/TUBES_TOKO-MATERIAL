@@ -30,9 +30,28 @@ class Sales_model extends CI_Model
         return $result['data'];
     }
 
+    public function getSaleDetails($id,$key) {
+        $getSaleDetails = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/sale_details',
+            'auth'  => ['user','password']
+        ]);
+
+        $response = $getSaleDetails->request('GET', '', [
+            'query' => [
+                'KEY' => $key,
+                'Sale_id' => $id
+            ]
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(), TRUE);
+
+        return $result['data'];
+    }
+
     public function getEmployees($key) {
         $getSupplier = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/employees'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/employees',
+            'auth'  => ['user', 'password']
         ]);
 
         $response = $getSupplier->request('GET', '', [
@@ -81,11 +100,11 @@ class Sales_model extends CI_Model
         return $result;
     }
 
-    public function delete($id) {
+    public function delete($id,$key) {
         $response = $this->_guzzle->request('DELETE', '', [
             'form_params' => [
                 'http_errors' => false,
-                // 'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'sale_id' => $id
             ]
         ]);

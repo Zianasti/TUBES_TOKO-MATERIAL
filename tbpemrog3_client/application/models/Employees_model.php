@@ -60,19 +60,19 @@ class Employees_model extends CI_Model {
         $response = $this->_guzzle->request('PUT', '', [
             'http_errors' => false,
             'form_params' => $data
-        ]);
+            ]);
 
         $result = json_decode($response->getBody()->getContents(),TRUE);
 
         return $result;
     }
 
-    public function delete($id)
+    public function delete($id,$key)
     {
         $response = $this->_guzzle->request('DELETE', '', [
             'form_params' => [
                 'http_errors' => false,
-                'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'employee_id' => $id
             ]
         ]);

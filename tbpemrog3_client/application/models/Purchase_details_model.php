@@ -46,6 +46,23 @@ class Purchase_details_model extends CI_Model
         return $result['data'];
     }
 
+    public function getSuppliers($key) {
+        $getSupplier = new Client([
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/suppliers',
+            'auth'  => ['user','password']
+        ]);
+
+        $response = $getSupplier->request('GET', '', [
+            'query' => [
+                'KEY' => $key
+            ]
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(), TRUE);
+
+        return $result['data'];
+    }
+
     public function getMaterialCategories($key) {
         $getMaterialCategories = new Client([
             'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories'
@@ -124,11 +141,11 @@ class Purchase_details_model extends CI_Model
         return $result;
     }
 
-    public function delete($id) {
+    public function delete($id,$key) {
         $response = $this->_guzzle->request('DELETE', '', [
             'form_params' => [
                 'http_errors' => false,
-                // 'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'purchase_id' => $id
             ]
         ]);

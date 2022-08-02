@@ -30,6 +30,8 @@ class Sales extends CI_Controller
         $key = $this->session->userdata('KEY');
 
         $data['data_penjualan'] = $this->Sales_model->getById($id,$key);
+        $data['data_rincian_penjualan'] = $this->Sales_model->GetSaleDetails($id,$key);
+
 
         $this->load->view('sales/detail', $data);
     }
@@ -37,6 +39,8 @@ class Sales extends CI_Controller
     public function add()
     {
         $data['title'] = "Tambah Data Sales";
+        $key = $this->session->userdata('KEY');
+
 
         $this->form_validation->set_rules('sale_id', 'sale_id', 'trim|required');
         $this->form_validation->set_rules('date', 'DATE', 'trim|required');
@@ -59,9 +63,10 @@ class Sales extends CI_Controller
                 'total' => $this->input->post('total'),
                 'money_change' => $this->input->post('money_change'),
                 'employee_id' => $this->input->post('employee_id'),
+                'KEY' => $key
             ];
 
-            $insert = $this->Sales_model->save($data);
+            $insert = $this->Sales_model->save($data,$key);
             if ($insert['response_code']===201) {
                 $this->session->set_flashdata('flash','Data ditambahkan');
                 redirect('Sales'); 
@@ -77,6 +82,7 @@ class Sales extends CI_Controller
 
     public function edit($id)
     {
+        $key = $this->session->userdata('KEY');
         $data['title'] = "Ubah Data Penjualan";
         
         $this->form_validation->set_rules('sale_id', 'sale_id', 'trim|required');
@@ -87,8 +93,9 @@ class Sales extends CI_Controller
         $this->form_validation->set_rules('employee_id', 'employee_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
-            $data['data_employee'] = $this->Sales_model->getEmployees();
-            $data['data_penjualan'] = $this->Sales_model->getById($id);
+            $key = $this->session->userdata('KEY');
+            $data['data_employee'] = $this->Sales_model->getEmployees($key);
+            $data['data_penjualan'] = $this->Sales_model->getById($id,$key);
 
             $this->load->view('sales/edit', $data);
         } else {
@@ -99,9 +106,10 @@ class Sales extends CI_Controller
                 'total' => $this->input->post('total'),
                 'money_change' => $this->input->post('money_change'),
                 'employee_id' => $this->input->post('employee_id'),
+                'KEY' => $key
             ];
 
-            $update = $this->Sales_model->update($data);
+            $update = $this->Sales_model->update($data,$key);
             if ($update['response_code']===201) {
                 $this->session->set_flashdata('flash','Data diubah');
                 redirect('Sales'); 
@@ -117,7 +125,8 @@ class Sales extends CI_Controller
 
     public function delete($id)
     {
-        $delete = $this->Sales_model->delete($id);
+        $key = $this->session->userdata('KEY');
+        $delete = $this->Sales_model->delete($id,$key);
             if ($delete['response_code']===200) {
                 $this->session->set_flashdata('flash','Data dihapus');
                 redirect('Sales'); 

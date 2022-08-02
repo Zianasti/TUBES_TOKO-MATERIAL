@@ -67,12 +67,12 @@ class Suppliers_model extends CI_Model {
         return $result;
     }
 
-    public function delete($id)
+    public function delete($id,$key)
     {
         $response = $this->_guzzle->request('DELETE', '', [
             'form_params' => [
                 'http_errors' => false,
-                'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'supplier_id' => $id
             ]
         ]);

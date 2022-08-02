@@ -26,7 +26,6 @@ class Material_categories extends CI_Controller
     public function detail($id)
     {
         $data['title'] = "Detail Data Material Categories";
-
         $key = $this->session->userdata('KEY');
 
         $data['data_material_categories'] = $this->Material_categories_model->getById($id,$key);
@@ -37,6 +36,7 @@ class Material_categories extends CI_Controller
     public function add()
     {
         $data['title'] = "Tambah Data Material Categories";
+        $key = $this->session->userdata('KEY');
 
         $this->form_validation->set_rules('category_id','Category id','trim|required|numeric');
         $this->form_validation->set_rules('name','NAME','trim|required');
@@ -47,10 +47,10 @@ class Material_categories extends CI_Controller
             $data = [
                 "category_id" => $this->input->post('category_id'),
                 "name" => $this->input->post('name'),
-                "KEY" => "ulbi123"
+                "KEY" => $key
             ];
  
-            $insert = $this->Material_categories_model->save($data);
+            $insert = $this->Material_categories_model->save($data,$key);
             if($insert['response_code']===201){
                 $this->session->set_flashdata('flash','Data Ditambahkan');
                 redirect('material_categories');
@@ -70,7 +70,9 @@ class Material_categories extends CI_Controller
     {
 
         $data['title'] = "Ubah Data Material Category";
-        $data['data_material_categories'] = $this->Material_categories_model->getById($id);
+        $key = $this->session->userdata('KEY');
+        $data['data_material_categories'] = $this->Material_categories_model->getById($id,$key);
+        
 
         $this->form_validation->set_rules('category_id','Category id','trim|required|numeric');
         $this->form_validation->set_rules('name','NAME','trim|required');
@@ -81,10 +83,10 @@ class Material_categories extends CI_Controller
             $data = [
                 'category_id' => $this->input->post('category_id'),
                 'name' => $this->input->post('name'),
-                "KEY" => "ulbi123"
+                "KEY" => $key
             ];
 
-            $update = $this->Material_categories_model->update($data);
+            $update = $this->Material_categories_model->update($data,$key);
             if($update['response_code']===201){
                 $this->session->set_flashdata('flash','Data Diedit');
                 redirect('material_categories');
@@ -102,7 +104,8 @@ class Material_categories extends CI_Controller
 
     public function delete($id)
     {
-        $update = $this->Material_categories_model->delete($id);
+        $key = $this->session->userdata('KEY');
+        $update = $this->Material_categories_model->delete($id,$key);
             if($update['response_code']===200){
                 $this->session->set_flashdata('flash','Dihapus');
                 redirect('Material_Categories');

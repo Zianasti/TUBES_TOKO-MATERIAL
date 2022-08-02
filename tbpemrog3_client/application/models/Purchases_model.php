@@ -32,7 +32,8 @@ class Purchases_model extends CI_Model
 
     public function getSuppliers($key) {
         $getSupplier = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/suppliers'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/suppliers',
+            'auth'  => ['user','password']
         ]);
 
         $response = $getSupplier->request('GET', '', [
@@ -48,7 +49,8 @@ class Purchases_model extends CI_Model
 
     public function getPurchaseDetails($id,$key) {
         $getPurchaseDetails = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/purchase_details'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/purchase_details',
+            'auth'  => ['user','password']
         ]);
 
         $response = $getPurchaseDetails->request('GET', '', [
@@ -98,11 +100,11 @@ class Purchases_model extends CI_Model
         return $result;
     }
 
-    public function delete($id) {
+    public function delete($id,$key) {
         $response = $this->_guzzle->request('DELETE', '', [
             'form_params' => [
                 'http_errors' => false,
-                // 'KEY' => 'ulbi123',
+                'KEY' => $key,
                 'purchase_id' => $id
             ]
         ]);

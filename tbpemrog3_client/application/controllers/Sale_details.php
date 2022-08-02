@@ -37,6 +37,7 @@ class Sale_details extends CI_Controller
     public function add()
     {
         $data['title'] = "Tambah Data Sale_details";
+        $key = $this->session->userdata('KEY');
 
         $this->form_validation->set_rules('sale_detail_id', 'sale_detail_id', 'trim|required');
         $this->form_validation->set_rules('qty', 'qty', 'trim|required');
@@ -60,9 +61,10 @@ class Sale_details extends CI_Controller
                 'subtotal' => $this->input->post('subtotal'),
                 'material_id' => $this->input->post('material_id'),
                 'sale_id' => $this->input->post('sale_id'),
+                'KEY' => $key
             ];
 
-            $insert = $this->Sale_details_model->save($data);
+            $insert = $this->Sale_details_model->save($data,$key);
             if ($insert['response_code']===201) {
                 $this->session->set_flashdata('flash','Data ditambahkan');
                 redirect('sale_details'); 
@@ -79,6 +81,7 @@ class Sale_details extends CI_Controller
     public function edit($id)
     {
         $data['title'] = "Ubah Data Rincian Penjualan";
+        $key = $this->session->userdata('KEY');
         
         $this->form_validation->set_rules('sale_detail_id', 'sale_detail_id', 'trim|required');
         $this->form_validation->set_rules('qty', 'QTY', 'trim|required');
@@ -87,8 +90,9 @@ class Sale_details extends CI_Controller
         $this->form_validation->set_rules('material_id', 'material_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
-            $data['data_rincian_penjualan'] = $this->Sale_details_model->getSuppliers();
-            $data['data_rincian_penjualan'] = $this->Sale_details_model->getById($id);
+            $key = $this->session->userdata('KEY');
+            $data['data_rincian_penjualan'] = $this->Sale_details_model->getSuppliers($key);
+            $data['data_rincian_penjualan'] = $this->Sale_details_model->getById($id,$key);
 
             $this->load->view('sale_details/edit', $data);
         } else {
@@ -98,9 +102,10 @@ class Sale_details extends CI_Controller
                 'cost' => $this->input->post('cost'),
                 'subtotal' => $this->input->post('subtotal'),
                 'material_id' => $this->input->post('material_id'),
+                'KEY' => $key
             ];
 
-            $upqty = $this->Sale_details_model->upqty($data);
+            $upqty = $this->Sale_details_model->upqty($data,$key);
             if ($upqty['response_code']===201) {
                 $this->session->set_flashdata('flash','Data diubah');
                 redirect('Sale_details'); 
@@ -114,9 +119,10 @@ class Sale_details extends CI_Controller
         }
     }
 
-    public function delete($id)
+    public function delete($id,$key)
     {
-        $delete = $this->Sale_details_model->delete($id);
+        $key = $this->session->userdata('KEY');
+        $delete = $this->Sale_details_model->delete($id,$key);
             if ($delete['response_code']===200) {
                 $this->session->set_flashdata('flash','Data dihapus');
                 redirect('Sale_details'); 

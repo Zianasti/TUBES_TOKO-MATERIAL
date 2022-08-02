@@ -26,7 +26,6 @@ class Employees extends CI_Controller
     public function detail($id)
     {
         $data['title'] = "Detail Data Employees";
-
         $key = $this->session->userdata('KEY');
 
         $data['data_employees'] = $this->Employees_model->getById($id,$key);
@@ -37,6 +36,8 @@ class Employees extends CI_Controller
     public function add()
     {
         $data['title'] = "Tambah Data Employees";
+
+        $key = $this->session->userdata('KEY');
 
         $this->form_validation->set_rules('employee_id','ID Karyawan','trim|required|numeric');
         $this->form_validation->set_rules('name','Nama','trim|required');
@@ -53,11 +54,10 @@ class Employees extends CI_Controller
                 "dob" => $this->input->post('dob'),
                 "gender" => $this->input->post('gender'),
                 "email" => $this->input->post('email'),
-
-                "KEY" => "ulbi123"
+                "KEY" => $key
             ];
  
-            $insert = $this->Employees_model->save($data);
+            $insert = $this->Employees_model->save($data,$key);
             if($insert['response_code']===201){
                 $this->session->set_flashdata('flash','Data Ditambahkan');
                 redirect('employees');
@@ -77,7 +77,9 @@ class Employees extends CI_Controller
     {
 
         $data['title'] = "Ubah Data Employees";
-        $data['data_employees'] = $this->Employees_model->getById($id);
+        $key = $this->session->userdata('KEY');
+        $data['data_employees'] = $this->Employees_model->getById($id,$key);
+
 
         $this->form_validation->set_rules('employee_id','ID Karyawan','trim|required|numeric');
         $this->form_validation->set_rules('name','Nama','trim|required');
@@ -94,11 +96,10 @@ class Employees extends CI_Controller
                 "dob" => $this->input->post('dob'),
                 "gender" => $this->input->post('gender'),
                 "email" => $this->input->post('email'),
-
-                "KEY" => "ulbi123"
+                "KEY" => $key
             ];
 
-            $update = $this->Employees_model->update($data);
+            $update = $this->Employees_model->update($data,$key);
             if($update['response_code']===201){
                 $this->session->set_flashdata('flash','Data Diedit');
                 redirect('employees');
@@ -116,7 +117,9 @@ class Employees extends CI_Controller
 
     public function delete($id)
     {
-        $update = $this->Employees_model->delete($id);
+        $key = $this->session->userdata('KEY');
+
+        $update = $this->Employees_model->delete($id,$key);
             if($update['response_code']===200){
                 $this->session->set_flashdata('flash','Dihapus');
                 redirect('Employees');

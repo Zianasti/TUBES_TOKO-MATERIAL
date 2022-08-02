@@ -37,6 +37,7 @@ class Materials extends CI_Controller
     public function add()
     {
         $data['title'] = "Tambah Data Material";
+        $key = $this->session->userdata('KEY');
 
         $this->form_validation->set_rules('material_id','ID Material','trim|required|numeric');
         $this->form_validation->set_rules('name','Nama','trim|required');
@@ -45,7 +46,8 @@ class Materials extends CI_Controller
         $this->form_validation->set_rules('category_id','Nama Kategori','trim|required');
 
         if($this->form_validation->run()==false){
-            $data['data_material_categories'] = $this->Materials_model->getMaterialCategories();
+            $key = $this->session->userdata('KEY');
+            $data['data_material_categories'] = $this->Materials_model->getMaterialCategories($key);
             $this->load->view('materials/add',$data);
         }else {
             $data = [
@@ -54,11 +56,10 @@ class Materials extends CI_Controller
                 "stock" => $this->input->post('stock'),
                 "price" => $this->input->post('price'),
                 "category_id" => $this->input->post('category_id'),
-
-                "KEY" => "ulbi123"
+                "KEY" => $key
             ];
  
-            $insert = $this->Materials_model->save($data);
+            $insert = $this->Materials_model->save($data,$key);
             if($insert['response_code']===201){
                 $this->session->set_flashdata('flash','Data Ditambahkan');
                 redirect('materials');
@@ -78,7 +79,7 @@ class Materials extends CI_Controller
     {
 
         $data['title'] = "Ubah Data Material";
-        
+        $key = $this->session->userdata('KEY');
 
         $this->form_validation->set_rules('material_id','ID Material','trim|required|numeric');
         $this->form_validation->set_rules('name','Nama','trim|required');
@@ -87,8 +88,9 @@ class Materials extends CI_Controller
         $this->form_validation->set_rules('category_id','Nama Kategori','trim|required');
 
         if($this->form_validation->run()==false){
-            $data['data_material_categories'] = $this->Materials_model->getMaterialCategories();
-            $data['data_materials'] = $this->Materials_model->getById($id);
+            $key = $this->session->userdata('KEY');
+            $data['data_material_categories'] = $this->Materials_model->getMaterialCategories($key);
+            $data['data_materials'] = $this->Materials_model->getById($id,$key);
             $this->load->view('materials/edit',$data);
         }else {
             $data = [
@@ -97,11 +99,10 @@ class Materials extends CI_Controller
                 "stock" => $this->input->post('stock'),
                 "price" => $this->input->post('price'),
                 "category_id" => $this->input->post('category_id'),
-
-                "KEY" => "ulbi123"
+                "KEY" => $key
             ];
 
-            $update = $this->Materials_model->update($data);
+            $update = $this->Materials_model->update($data,$key);
             if($update['response_code']===201){
                 $this->session->set_flashdata('flash','Data Diedit');
                 redirect('materials');
@@ -119,7 +120,8 @@ class Materials extends CI_Controller
 
     public function delete($id)
     {
-        $update = $this->Materials_model->delete($id);
+        $key = $this->session->userdata('KEY');
+        $update = $this->Materials_model->delete($id,$key);
             if($update['response_code']===200){
                 $this->session->set_flashdata('flash','Dihapus');
                 redirect('Materials');
