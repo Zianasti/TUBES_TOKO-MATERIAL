@@ -26,13 +26,13 @@
                     <a href="<?= base_url('material_categories/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Kategori</th>
+                            <th>Nomor</th>
                             <th>Nama Kategori</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php foreach($data_material_categories as $mc): ?>
+                    <?php $nomor=0; foreach($data_material_categories as $mc): $nomor++; ?>
                         <tr>
-                            <td><?= $mc['category_id'] ?></td>
+                            <td><?= $nomor ?></td>
                             <td><?= $mc['name'] ?></td>
                             <td>
                             <a href="<?= base_url('material_categories/detail/'.$mc['category_id'])?>" class="btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>

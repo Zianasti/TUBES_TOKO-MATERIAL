@@ -13,9 +13,8 @@
             <div class="row mt-2">
                 <form action="" method="post">
                 <div class="col-md-6 mt-2">
-                        <label for="category_id">ID Kategori</label>
                         <div class="col-sm-15">
-                            <input type="text" class="form-control" id="category_id" name="category_id" value=" <?= $data_material_categories['category_id']; ?>" readonly>
+                            <input type="hidden" class="form-control" id="category_id" name="category_id" value=" <?= $data_material_categories['category_id']; ?>" readonly>
                             <small class="text-danger">
                                 <?php echo form_error('category_id') ?>
                             </small>

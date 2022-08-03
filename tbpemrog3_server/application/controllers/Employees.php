@@ -42,16 +42,13 @@ class Employees extends RestController
     function index_post()
     {
         $data = array(
-            'employee_id' => $this->post('employee_id'),
             'name' => $this->post('name'),
             'dob' => $this->post('dob'),
             'gender' => $this->post('gender'),
             'email' => $this->post('email')
         );
 
-        $cek_data = $this->Employees_model->get($this->post('employee_id'));
-
-        if ($data['employee_id'] == NULL || $data['name'] == NULL || $data['dob'] == NULL 
+        if ($data['name'] == NULL || $data['dob'] == NULL 
         || $data['gender'] == NULL || $data['email'] == NULL) {
             $this->response(
                 [
@@ -61,16 +58,7 @@ class Employees extends RestController
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
-        } elseif ($cek_data) {
-            $this->response(
-                [
-                    'status'=> false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        } elseif ($this->Employees_model->insert($data) > 0) {
+        }  elseif ($this->Employees_model->insert($data) > 0) {
             $this->response(
                 [
                     'status' => true,

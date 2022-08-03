@@ -23,10 +23,12 @@ class Material_Categories_Model extends CI_Model{
     //fungsi untuk menambahkan data
     public function insert($data)
     {
-        //Menggunakan Query Builder
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
-        // return $query;
+        $this->db->insert('material_categories', [
+            'category_id' => '',
+            'name' => $data['name'],
+        ]);
+        $query = $this->db->insert_id();
+        return $query;
     }
 
     //fungsi untuk mengubah data

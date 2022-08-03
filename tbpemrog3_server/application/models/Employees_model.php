@@ -21,8 +21,15 @@ class Employees_Model extends CI_Model{
 
     public function insert($data)
     {
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
+        $this->db->insert('employees', [
+            'employee_id' => '',
+            'name' => $data['name'],
+            'dob' => $data['dob'],
+            'gender' => $data['gender'],
+            'email' => $data['email']
+        ]);
+        $query = $this->db->insert_id();
+        return $query;
     }
 
     public function update($data, $id)

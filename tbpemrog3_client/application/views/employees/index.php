@@ -26,14 +26,14 @@
                     <a href="<?= base_url('employees/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Karyawan</th>
+                            <th>Nomor</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php foreach($data_employees as $de): ?>
+                    <?php $nomor=1; foreach($data_employees as $de): ?>
                         <tr>
-                            <td><?= $de['employee_id'] ?></td>
+                            <td><?= $nomor ?></td>
                             <td><?= $de['name'] ?></td>
                             <td><?= $de['email'] ?></td>
                             <td>
@@ -47,7 +47,7 @@
                                 </form>    
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php $nomor++; endforeach; ?>
                     </table>
                 </div>
             </div>

@@ -38,18 +38,16 @@ class Material_categories extends CI_Controller
         $data['title'] = "Tambah Data Material Categories";
         $key = $this->session->userdata('KEY');
 
-        $this->form_validation->set_rules('category_id','Category id','trim|required|numeric');
         $this->form_validation->set_rules('name','NAME','trim|required');
 
         if($this->form_validation->run()==false){
             $this->load->view('material_categories/add',$data);
         }else {
             $data = [
-                "category_id" => $this->input->post('category_id'),
                 "name" => $this->input->post('name'),
                 "KEY" => $key
             ];
- 
+
             $insert = $this->Material_categories_model->save($data,$key);
             if($insert['response_code']===201){
                 $this->session->set_flashdata('flash','Data Ditambahkan');

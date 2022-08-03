@@ -39,7 +39,6 @@ class Employees extends CI_Controller
 
         $key = $this->session->userdata('KEY');
 
-        $this->form_validation->set_rules('employee_id','ID Karyawan','trim|required|numeric');
         $this->form_validation->set_rules('name','Nama','trim|required');
         $this->form_validation->set_rules('dob','Tanggal Lahir','trim|required');
         $this->form_validation->set_rules('gender','Jenis Kelamin','trim|required');
@@ -49,7 +48,6 @@ class Employees extends CI_Controller
             $this->load->view('employees/add',$data);
         }else {
             $data = [
-                "employee_id" => $this->input->post('employee_id'),
                 "name" => $this->input->post('name'),
                 "dob" => $this->input->post('dob'),
                 "gender" => $this->input->post('gender'),

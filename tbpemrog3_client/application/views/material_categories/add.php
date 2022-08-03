@@ -11,10 +11,6 @@
             <hr>
             <div class="row mt-2">
                 <form action="<?= base_url('material_categories/add') ?>" method="post">
-                <div class="col-md-6">                    
-                    <label for="">ID Kategori</label>
-                    <input type="number" class="form-control" name="category_id">                   
-                </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Nama Kategori</label>
                     <input type="text" class="form-control" name="name">                   

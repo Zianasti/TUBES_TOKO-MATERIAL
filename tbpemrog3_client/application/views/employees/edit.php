@@ -13,9 +13,8 @@
             <div class="row mt-2">
                 <form action="" method="post">
                 <div class="col-md-6 mt-2">
-                        <label for="employee_id">ID Karyawan</label>
                         <div class="col-sm-15">
-                            <input type="text" class="form-control" id="employee_id" name="employee_id" value=" <?= $data_employees['employee_id']; ?>" readonly>
+                            <input type="hidden" class="form-control" id="employee_id" name="employee_id" value=" <?= $data_employees['employee_id']; ?>" readonly>
                             <small class="text-danger">
                                 <?php echo form_error('employee_id') ?>
                             </small>
@@ -42,7 +41,7 @@
                     <input type="text" class="form-control" name="email" id="email" value=" <?= $data_employees['email']; ?>">                   
                 </div>
                 <div class="col-md-6">
-                    <a href="<?= base_url('material_categories') ?>" class="btn btn-secondary mt-2">Kembali</a>
+                    <a href="<?= base_url('employees') ?>" class="btn btn-secondary mt-2">Kembali</a>
                     <input type="submit" class="btn btn-primary float-end mt-2" value="Simpan">
                     
                 </div>

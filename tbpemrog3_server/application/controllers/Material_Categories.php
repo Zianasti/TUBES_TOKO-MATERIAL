@@ -46,14 +46,11 @@ class Material_Categories extends RestController
     function index_post()
     {
         $data = array(
-            'category_id' => $this->post('category_id'),
             'name' => $this->post('name')
         );
-
-        $cek_data = $this->Material_categories_model->get($this->post('category_id'));
         
         //Jika semua data wajib diisi
-        if ($data['category_id'] == NULL || $data['name'] == NULL) {
+        if ($data['name'] == NULL) {
             $this->response(
                 [
                     'status' => false,
@@ -63,16 +60,6 @@ class Material_Categories extends RestController
                 RestController::HTTP_BAD_REQUEST
             );
         //Jika data duplikat
-        } else if ($cek_data) {
-            $this->response(
-                [
-                    'status' => false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        //Jika data tersimpan
         } elseif ($this->Material_categories_model->insert($data) > 0) {
             $this->response(
                 [
