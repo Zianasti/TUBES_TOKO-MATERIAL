@@ -43,7 +43,6 @@ class Purchase_details extends CI_Controller
             $this->form_validation->set_rules('qty', 'qty', 'trim|required');
             $this->form_validation->set_rules('cost', 'cost', 'trim|required');
             $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
-            $this->form_validation->set_rules('material_id1', 'material_id1', 'trim|required');
             $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
         }
 
@@ -51,7 +50,7 @@ class Purchase_details extends CI_Controller
             $this->form_validation->set_rules('qty', 'qty', 'trim|required');
             $this->form_validation->set_rules('cost', 'cost', 'trim|required');
             $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
-            $this->form_validation->set_rules('material_id2', 'material_id2', 'trim|required');
+            $this->form_validation->set_rules('material_id', 'material_id', 'trim|required');
             $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
         }
 
@@ -75,7 +74,6 @@ class Purchase_details extends CI_Controller
                     'qty' => $this->input->post('qty'),
                     'cost' => $this->input->post('cost'),
                     'subtotal' => $this->input->post('subtotal'),
-                    'material_id' => $this->input->post('material_id1'),
                     'purchase_id' => $this->input->post('purchase_id'),
                     'KEY' => $key
                 ];
@@ -88,7 +86,7 @@ class Purchase_details extends CI_Controller
                     'qty' => $this->input->post('qty'),
                     'cost' => $this->input->post('cost'),
                     'subtotal' => $this->input->post('subtotal'),
-                    'material_id' => $this->input->post('material_id2'),
+                    'material_id' => $this->input->post('material_id'),
                     'purchase_id' => $this->input->post('purchase_id'),
                     'KEY' => $key
                 ];   

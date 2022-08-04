@@ -31,12 +31,14 @@ class Purchase_details_Model extends CI_Model
                 'category_id' => $data['category_id']
             ]);
 
+            $newInsertId = $this->db->insert_id();
+
             $this->db->insert($this->_table, [
                 'purchase_detail_id' => '',
                 'qty' => $data['qty'],
                 'cost' => $data['cost'],
                 'subtotal' => $data['subtotal'],
-                'material_id' => $data['material_id'],
+                'material_id' => $newInsertId,
                 'purchase_id' => $data['purchase_id']
             ]);
             

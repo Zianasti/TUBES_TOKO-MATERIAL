@@ -34,9 +34,9 @@ class Purchase_Details extends RestController
                 [
                     'data' => false,
                     'status' => 'Data Tidak Ada',
-                    'response_code' => RestController::HTTP_NOT_FOUND
+                    'response_code' => RestController::HTTP_OK
                 ],
-                RestController::HTTP_NOT_FOUND
+                RestController::HTTP_OK
             );
         }
     }
@@ -57,7 +57,7 @@ class Purchase_Details extends RestController
             'purchase_id' => $this->post('purchase_id')
         );
 
-        if ($data['qty'] == NULL || $data['cost'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['purchase_id']==NULL) {
+        if ($data['qty'] == NULL || $data['cost'] == NULL || $data['subtotal'] == NULL || $data['purchase_id']==NULL) {
             $this->response(
                 [
                     'status' => false,
