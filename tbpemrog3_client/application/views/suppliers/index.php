@@ -31,7 +31,9 @@
                             <th>Alamat</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php $nomor=0; foreach($data_suppliers as $ds): $nomor++; ?>
+                    <?php 
+                    if ($data_suppliers != false) {
+                    $nomor=0; foreach($data_suppliers as $ds): $nomor++; ?>
                         <tr>
                             <td><?= $nomor ?></td>
                             <td><?= $ds['name'] ?></td>
@@ -47,7 +49,19 @@
                                 </form>    
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach;} ?>
+                    <?php 
+                    if ($data_suppliers == false) {
+                        echo "
+                            <tr>
+                            <td></td>
+                            <td>Tidak ada data</td>
+                            <td>  
+                            </td>
+                        </tr>
+                        ";
+                    }
+                    ?>
                     </table>
                 </div>
             </div>

@@ -31,7 +31,9 @@
                             <th>Stok</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php $nomor=0; foreach($data_materials as $dm): $nomor++ ?>
+                    <?php 
+                    if ($data_materials != false) {
+                    $nomor=0; foreach($data_materials as $dm): $nomor++ ?>
                         <tr>
                             <td><?= $nomor ?></td>
                             <td><?= $dm['name'] ?></td>
@@ -47,7 +49,19 @@
                                 </form>    
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach; }?>
+                    <?php 
+                    if ($data_materials == false) {
+                        echo "
+                            <tr>
+                            <td></td>
+                            <td>Tidak ada data</td>
+                            <td>  
+                            </td>
+                        </tr>
+                        ";
+                    }
+                    ?>
                     </table>
                 </div>
             </div>

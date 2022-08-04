@@ -30,7 +30,9 @@
                             <th>Nama Kategori</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php $nomor=0; foreach($data_material_categories as $mc): $nomor++; ?>
+                    <?php 
+                    if ($data_material_categories != false) {
+                    $nomor=0; foreach($data_material_categories as $mc): $nomor++; ?>
                         <tr>
                             <td><?= $nomor ?></td>
                             <td><?= $mc['name'] ?></td>
@@ -45,7 +47,19 @@
                                 </form>    
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach; }?>
+                    <?php 
+                    if ($data_material_categories == false) {
+                        echo "
+                            <tr>
+                            <td></td>
+                            <td>Tidak ada data</td>
+                            <td>  
+                            </td>
+                        </tr>
+                        ";
+                    }
+                    ?>
                     </table>
                 </div>
             </div>
