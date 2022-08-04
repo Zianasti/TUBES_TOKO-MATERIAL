@@ -43,30 +43,18 @@ class Purchases extends RestController
     function index_post()
     {
         $data = array(
-            'purchase_id' => $this->post('purchase_id'),
             'date' => $this->post('date'),
             'total' => $this->post('total'),
             'description' => $this->post('description'),
             'supplier_id' => $this->post('supplier_id')
         );
 
-        $cek_data = $this->Purchases_model->get($this->post('purchase_id'));
-
-        if ($data['purchase_id'] == NULL || $data['date'] == NULL || $data['total'] === NULL || $data['description']==NULL || $data['supplier_id']==NULL) {
+        if ($data['date'] == NULL || $data['total'] === NULL || $data['description']==NULL || $data['supplier_id']==NULL) {
             $this->response(
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Yang Dikirim Tidak Boleh Ada yang Kosong',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        } elseif($cek_data) {
-            $this->response(
-                [
-                    'status' => false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

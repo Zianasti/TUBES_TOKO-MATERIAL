@@ -24,7 +24,7 @@ class Purchase_details_Model extends CI_Model
     {
         if ($data['jenisPost'] == "radioBaru") {
             $this->db->insert('materials', [
-                'material_id' => $data['material_id'],
+                'material_id' => '',
                 'name' => $data['name'],
                 'stock' => $data['qty'],
                 'price' => $data['price'],
@@ -32,7 +32,7 @@ class Purchase_details_Model extends CI_Model
             ]);
 
             $this->db->insert($this->_table, [
-                'purchase_detail_id' => $data['purchase_detail_id'],
+                'purchase_detail_id' => '',
                 'qty' => $data['qty'],
                 'cost' => $data['cost'],
                 'subtotal' => $data['subtotal'],
@@ -55,7 +55,7 @@ class Purchase_details_Model extends CI_Model
         }
         if ($data['jenisPost'] == "radioUpdate") {
             $this->db->insert($this->_table, [
-                'purchase_detail_id' => $data['purchase_detail_id'],
+                'purchase_detail_id' => '',
                 'qty' => $data['qty'],
                 'cost' => $data['cost'],
                 'subtotal' => $data['subtotal'],

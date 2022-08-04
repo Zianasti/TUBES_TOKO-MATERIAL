@@ -42,30 +42,19 @@ class Suppliers extends RestController
     function index_post()
     {
         $data = array(
-            'supplier_id' => $this->post('supplier_id'),
             'name' => $this->post('name'),
             'phone' => $this->post('phone'),
             'address' => $this->post('address'),
             'email' => $this->post('email')
         );
 
-        $cek_data = $this->Suppliers_model->get($this->post('supplier_id'));
-        if ($data['supplier_id'] == NULL || $data['name'] == NULL || $data['phone'] == NULL
+        if ($data['name'] == NULL || $data['phone'] == NULL
         || $data['address'] == NULL || $data['email'] == NULL) {
             $this->response(
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data yang dikirim tidak boleh  ada yang kosong',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        } elseif ($cek_data) {
-            $this->response(
-                [
-                    'status' => false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

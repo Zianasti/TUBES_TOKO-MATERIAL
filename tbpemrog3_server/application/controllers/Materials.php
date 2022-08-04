@@ -43,30 +43,18 @@ class Materials extends RestController
     function index_post()
     {
         $data = array(
-            'material_id' => $this->post('material_id'),
             'name' => $this->post('name'),
             'stock' => $this->post('stock'),
             'price' => $this->post('price'),
             'category_id' => $this->post('category_id')
         );
 
-        $cek_data = $this->Materials_model->get($this->post('material_id'));
-
-        if ($data['material_id'] == NULL || $data['name'] == NULL || $data['stock']==NULL || $data['price']==NULL || $data['category_id']==NULL) {
+        if ($data['name'] == NULL || $data['stock']==NULL || $data['price']==NULL || $data['category_id']==NULL) {
             $this->response(
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Yang Dikirim Tidak Boleh Ada yang Kosong',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        } elseif ($cek_data) {
-            $this->response(
-                [
-                    'status' =>false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

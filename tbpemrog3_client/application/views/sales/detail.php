@@ -7,7 +7,7 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Ubah Data Penjualan</h3>
+                <h3>Detail Data Penjualan</h3>
             </div>
             <!-- Alert kalau ada pesan dari controller -->
             <?php if ($this->session->flashdata('message')) : ?>
@@ -69,16 +69,16 @@
                     <a href="<?= base_url('sale_details/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Rincian Penjualan</th>
+                            <th>Nomor</th>
                             <th>Tanggal</th>
                             <th>Nama Material</th>
                             <th>Qty</th>
                             <th>Subtotal</th>
                             <th>Aksi</th>
                         </tr>
-                        <?php foreach ($data_rincian_penjualan as $drp) : ?>
+                        <?php $nomor=0; foreach ($data_rincian_penjualan as $drp) : $nomor++; ?>
                             <tr>
-                                <td><?= $drp['sale_detail_id'] ?></td>
+                                <td><?= $nomor ?></td>
                                 <td><?= $drp['date'] ?></td>
                                 <td><?= $drp['name'] ?></td>
                                 <td><?= $drp['qty'] ?></td>

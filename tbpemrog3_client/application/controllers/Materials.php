@@ -15,7 +15,6 @@ class Materials extends CI_Controller
     public function index()
     {
         $data['title'] = "List Data Material";
-
         $key = $this->session->userdata('KEY');
 
         $data['data_materials'] = $this->Materials_model->getAll($key);
@@ -39,7 +38,6 @@ class Materials extends CI_Controller
         $data['title'] = "Tambah Data Material";
         $key = $this->session->userdata('KEY');
 
-        $this->form_validation->set_rules('material_id','ID Material','trim|required|numeric');
         $this->form_validation->set_rules('name','Nama','trim|required');
         $this->form_validation->set_rules('stock','Stok','trim|required');
         $this->form_validation->set_rules('price','Harga','trim|required');
@@ -51,7 +49,6 @@ class Materials extends CI_Controller
             $this->load->view('materials/add',$data);
         }else {
             $data = [
-                "material_id" => $this->input->post('material_id'),
                 "name" => $this->input->post('name'),
                 "stock" => $this->input->post('stock'),
                 "price" => $this->input->post('price'),

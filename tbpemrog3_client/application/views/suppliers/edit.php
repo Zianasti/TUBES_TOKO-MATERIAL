@@ -6,16 +6,15 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Edit Data Pemasok</h3>
+                <h3>Edit Data Supplier</h3>
             </div>
             <hr>
             
             <div class="row mt-2">
                 <form action="" method="post">
                 <div class="col-md-6 mt-2">
-                        <label for="supplier_id">ID Pemasok</label>
                         <div class="col-sm-15">
-                            <input type="text" class="form-control" id="supplier_id" name="supplier_id" value=" <?= $data_suppliers['supplier_id']; ?>" readonly>
+                            <input type="hidden" class="form-control" id="supplier_id" name="supplier_id" value=" <?= $data_suppliers['supplier_id']; ?>" readonly>
                             <small class="text-danger">
                                 <?php echo form_error('supplier_id') ?>
                             </small>
@@ -38,7 +37,7 @@
                     <input type="text" class="form-control" name="email" id="email" value=" <?= $data_suppliers['email']; ?>">                   
                 </div>
                 <div class="col-md-6">
-                    <a href="<?= base_url('material_categories') ?>" class="btn btn-secondary mt-2">Kembali</a>
+                    <a href="<?= base_url('suppliers') ?>" class="btn btn-secondary mt-2">Kembali</a>
                     <input type="submit" class="btn btn-primary float-end mt-2" value="Simpan">
                     
                 </div>

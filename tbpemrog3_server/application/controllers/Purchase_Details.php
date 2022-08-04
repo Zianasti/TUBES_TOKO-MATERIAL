@@ -50,7 +50,6 @@ class Purchase_Details extends RestController
             'price' => $this->input->post('price'),
             'category_id' => $this->input->post('category_id'),
 
-            'purchase_detail_id' => $this->post('purchase_detail_id'),
             'qty' => $this->post('qty'),
             'cost' => $this->post('cost'),
             'subtotal' => $this->post('subtotal'),
@@ -58,24 +57,12 @@ class Purchase_Details extends RestController
             'purchase_id' => $this->post('purchase_id')
         );
 
-        $cek_data = $this->Purchase_details_model->get($this->post('purchase_detail_id'),'');
-
-        if ($data['purchase_detail_id'] == NULL || $data['qty'] == NULL || $data['cost'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['purchase_id']==NULL) {
+        if ($data['qty'] == NULL || $data['cost'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['purchase_id']==NULL) {
             $this->response(
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Yang Dikirim Tidak Boleh Ada yang Kosong',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        } elseif($cek_data) {
-            $this->response(
-                [
-                    'status' =>false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
-                    'hasil_cek' => $cek_data
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

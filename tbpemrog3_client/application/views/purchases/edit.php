@@ -23,8 +23,7 @@
                 <?php foreach($data_pembelian as $dp): ?>
                 <form action="" method="post">
                 <div class="col-md-6">                    
-                    <label for="">ID Pembelian</label>
-                    <input type="number" class="form-control" name="purchase_id" value="<?= $dp['purchase_id'] ?>">                   
+                    <input type="hidden" class="form-control" name="purchase_id" value="<?= $dp['purchase_id'] ?>">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Tanggal</label>

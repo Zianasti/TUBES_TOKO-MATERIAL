@@ -19,8 +19,15 @@ class Materials_Model extends CI_Model
 
     public function insert($data)
     {
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
+        $this->db->insert('materials', [
+            'material_id' => '',
+            'name' => $data ['name'],
+            'stock' => $data ['stock'],
+            'price' => $data ['price'],
+            'category_id' => $data ['category_id']
+        ]);
+        $query = $this->db->insert_id();
+        return $query;
     }
 
     public function update($data,$id)

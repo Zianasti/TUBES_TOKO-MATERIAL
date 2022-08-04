@@ -6,15 +6,11 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Tambah Data Pemasok</h3>
+                <h3>Tambah Data Supplier</h3>
             </div>
             <hr>
             <div class="row mt-2">
                 <form action="<?= base_url('suppliers/add') ?>" method="post">
-                <div class="col-md-6">                    
-                    <label for="">ID Pemasok</label>
-                    <input type="number" class="form-control" name="supplier_id">                   
-                </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Nama</label>
                     <input type="text" class="form-control" name="name">                   

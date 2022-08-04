@@ -15,9 +15,7 @@ class Sales extends CI_Controller
     public function index()
     {
         $data['title'] = "List Data Penjualan";
-
         $key = $this->session->userdata('KEY');
-
         $data['data_penjualan'] = $this->Sales_model->getAll($key);
 
         $this->load->view('sales/index', $data);
@@ -26,12 +24,9 @@ class Sales extends CI_Controller
     public function detail($id)
     {
         $data['title'] = "List Data Penjualan";
-
         $key = $this->session->userdata('KEY');
-
         $data['data_penjualan'] = $this->Sales_model->getById($id,$key);
         $data['data_rincian_penjualan'] = $this->Sales_model->GetSaleDetails($id,$key);
-
 
         $this->load->view('sales/detail', $data);
     }
@@ -41,8 +36,6 @@ class Sales extends CI_Controller
         $data['title'] = "Tambah Data Sales";
         $key = $this->session->userdata('KEY');
 
-
-        $this->form_validation->set_rules('sale_id', 'sale_id', 'trim|required');
         $this->form_validation->set_rules('date', 'DATE', 'trim|required');
         $this->form_validation->set_rules('pay', 'pay', 'trim|required');
         $this->form_validation->set_rules('total', 'total', 'trim|required');
@@ -57,7 +50,6 @@ class Sales extends CI_Controller
             $this->load->view('sales/add', $data);
         } else {
             $data = [
-                'sale_id' => $this->input->post('sale_id'),
                 'date' => $this->input->post('date'),
                 'pay' => $this->input->post('pay'),
                 'total' => $this->input->post('total'),

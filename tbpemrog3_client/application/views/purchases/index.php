@@ -26,13 +26,15 @@
                     <a href="<?= base_url('purchases/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
+                            <th>Nomor</th>
                             <th>Tanggal</th>
                             <th>Supplier</th>
                             <th>Total</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php foreach($data_pembelian as $dp): ?>
+                    <?php $nomor=0; foreach($data_pembelian as $dp): $nomor++ ?>
                         <tr>
+                            <td><?= $nomor?></td>
                             <td><?= $dp['date'] ?></td>
                             <td><?= $dp['name'] ?></td>
                             <td><?= $dp['total'] ?></td>

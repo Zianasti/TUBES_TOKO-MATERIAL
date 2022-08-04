@@ -6,7 +6,7 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Detail Data Pemasok</h3>
+                <h3>Detail Data Supplier</h3>
             </div>
             <hr>
             <div class="card-body">

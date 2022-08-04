@@ -36,16 +36,8 @@
                     </div>                 
                 </div>
                 <div id="containerInput">
-                    <div class="col-md-6 mt-2">                    
-                        <label for="">ID Rincian Pembelian</label>
-                        <input type="number" class="form-control" id="inputPurchaseDetailId" name="purchase_detail_id">                   
-                    </div>
 
                     <!-- Tambah Material Baru -->
-                    <div class="col-md-6 mt-2" id="inputMaterialId">                    
-                        <label for="">ID Material</label>
-                        <input type="number" class="form-control" name="material_id1">                   
-                    </div>
                     <div class="col-md-6 mt-2" id="inputMaterialName">                    
                         <label for="">Nama Material Baru</label>
                         <input type="text" class="form-control" name="name">                   
@@ -117,7 +109,6 @@
             if (radioBaru.checked == true) {
                 document.getElementById('containerInput').style.display = "block"
 
-                document.getElementById('inputMaterialId').style.display = "block"
                 document.getElementById('inputMaterialName').style.display = "block"
                 document.getElementById('inputMaterialPrice').style.display = "block"
                 document.getElementById('selectMaterialCategory').style.display = "block"
@@ -127,7 +118,6 @@
             if (radioUpdate.checked == true) {
                 document.getElementById('containerInput').style.display = "block"
 
-                document.getElementById('inputMaterialId').style.display = "none"
                 document.getElementById('inputMaterialName').style.display = "none"
                 document.getElementById('inputMaterialPrice').style.display = "none"
                 document.getElementById('selectMaterialCategory').style.display = "none"

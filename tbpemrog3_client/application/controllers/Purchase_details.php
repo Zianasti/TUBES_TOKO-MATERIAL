@@ -15,9 +15,7 @@ class Purchase_details extends CI_Controller
     public function index()
     {
         $data['title'] = "List Data Rincian Pembelian";
-
         $key = $this->session->userdata('KEY');
-
         $data['data_rincian_pembelian'] = $this->Purchase_details_model->getAll($key);
 
         $this->load->view('purchase_details/index', $data);
@@ -26,9 +24,7 @@ class Purchase_details extends CI_Controller
     public function detail($id)
     {
         $data['title'] = "List Data Rincian Pembelian";
-
         $key = $this->session->userdata('KEY');
-
         $data['data_rincian_pembelian'] = $this->Purchase_details_model->getById($id,$key);
 
         $this->load->view('purchase_details/detail', $data);
@@ -44,7 +40,6 @@ class Purchase_details extends CI_Controller
             $this->form_validation->set_rules('price', 'price', 'trim|required');
             $this->form_validation->set_rules('category_id', 'category_id', 'trim|required');
 
-            $this->form_validation->set_rules('purchase_detail_id', 'purchase_detail_id', 'trim|required');
             $this->form_validation->set_rules('qty', 'qty', 'trim|required');
             $this->form_validation->set_rules('cost', 'cost', 'trim|required');
             $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
@@ -53,7 +48,6 @@ class Purchase_details extends CI_Controller
         }
 
         if ($this->input->post('radioJenis') == 'radioUpdate') {
-            $this->form_validation->set_rules('purchase_detail_id', 'purchase_detail_id', 'trim|required');
             $this->form_validation->set_rules('qty', 'qty', 'trim|required');
             $this->form_validation->set_rules('cost', 'cost', 'trim|required');
             $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
@@ -78,12 +72,12 @@ class Purchase_details extends CI_Controller
                     'price' => $this->input->post('price'),
                     'category_id' => $this->input->post('category_id'),
 
-                    'purchase_detail_id' => $this->input->post('purchase_detail_id'),
                     'qty' => $this->input->post('qty'),
                     'cost' => $this->input->post('cost'),
                     'subtotal' => $this->input->post('subtotal'),
                     'material_id' => $this->input->post('material_id1'),
                     'purchase_id' => $this->input->post('purchase_id'),
+                    'KEY' => $key
                 ];
             }
 
@@ -91,12 +85,12 @@ class Purchase_details extends CI_Controller
                 $data = [
                     'jenisPost' => $this->input->post('radioJenis'),
 
-                    'purchase_detail_id' => $this->input->post('purchase_detail_id'),
                     'qty' => $this->input->post('qty'),
                     'cost' => $this->input->post('cost'),
                     'subtotal' => $this->input->post('subtotal'),
                     'material_id' => $this->input->post('material_id2'),
                     'purchase_id' => $this->input->post('purchase_id'),
+                    'KEY' => $key
                 ];   
             }   
 
@@ -138,6 +132,7 @@ class Purchase_details extends CI_Controller
                 'cost' => $this->input->post('cost'),
                 'subtotal' => $this->input->post('subtotal'),
                 'material_id' => $this->input->post('material_id'),
+                'KEY' => $key
             ];
 
             $upqty = $this->Purchase_details_model->upqty($data,$key);

@@ -18,8 +18,16 @@ class Sales_Model extends CI_Model
 
     public function insert ($data)
     {
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
+        $this->db->insert('sales', [
+            'sale_id' => '',
+            'date' => $data['date'],
+            'pay' => $data['pay'],
+            'total' => $data['total'],
+            'money_change' => $data['money_change'],
+            'employee_id' => $data['employee_id']
+        ]);
+        $query = $this->db->insert_id();
+        return $query;
     }
 
     public function update ($data,$id)

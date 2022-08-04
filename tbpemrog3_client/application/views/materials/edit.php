@@ -23,8 +23,7 @@
                 <?php foreach($data_materials as $dm): ?>
                 <form action="" method="post">
                 <div class="col-md-6">                    
-                    <label for="">ID Material</label>
-                    <input type="number" class="form-control" name="material_id" value="<?= $dm['material_id'] ?>">                   
+                    <input type="hidden" class="form-control" name="material_id" value="<?= $dm['material_id'] ?>">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Nama</label>

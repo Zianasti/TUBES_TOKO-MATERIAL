@@ -18,8 +18,15 @@ class Purchases_Model extends CI_Model
 
     public function insert ($data)
     {
-        $this->db->insert($this->_table, $data);
-        return $this->db->affected_rows();
+        $this->db->insert('purchases', [
+            'purchase_id' => '',
+            'date' => $data['date'],
+            'total' => $data['total'],
+            'description' => $data['description'],
+            'supplier_id' => $data['supplier_id']
+        ]);
+        $query = $this->db->insert_id();
+        return $query;
     }
 
     public function update ($data,$id)

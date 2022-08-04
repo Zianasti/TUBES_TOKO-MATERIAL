@@ -11,10 +11,6 @@
             <hr>
             <div class="row mt-2">
                 <form action="<?= base_url('sales/add') ?>" method="post">
-                <div class="col-md-6">                    
-                    <label for="">ID Penjualan</label>
-                    <input type="number" class="form-control" name="sale_id">                   
-                </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Tanggal</label>
                     <input type="date" class="form-control" name="date">                   

@@ -15,9 +15,7 @@ class Suppliers extends CI_Controller
     public function index()
     {
         $data['title'] = "List Data Pemasok";
-
         $key = $this->session->userdata('KEY');
-
         $data['data_suppliers'] = $this->Suppliers_model->getAll($key);
 
         $this->load->view('Suppliers/index',$data);
@@ -26,9 +24,7 @@ class Suppliers extends CI_Controller
     public function detail($id)
     {
         $data['title'] = "Detail Data Pemasok";
-
         $key = $this->session->userdata('KEY');
-
         $data['data_suppliers'] = $this->Suppliers_model->getById($id,$key);
 
         $this->load->view('suppliers/detail',$data);
@@ -39,7 +35,6 @@ class Suppliers extends CI_Controller
         $key = $this->session->userdata('KEY');
         $data['title'] = "Tambah Data Pemasok";
 
-        $this->form_validation->set_rules('supplier_id','ID Pemasok','trim|required|numeric');
         $this->form_validation->set_rules('name','Nama','trim|required');
         $this->form_validation->set_rules('phone','Phone','trim|required');
         $this->form_validation->set_rules('address','Address','trim|required');
@@ -49,7 +44,6 @@ class Suppliers extends CI_Controller
             $this->load->view('suppliers/add',$data);
         }else {
             $data = [
-                "supplier_id" => $this->input->post('supplier_id'),
                 "name" => $this->input->post('name'),
                 "phone" => $this->input->post('phone'),
                 "address" => $this->input->post('address'),

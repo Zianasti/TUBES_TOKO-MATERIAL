@@ -43,7 +43,6 @@ class Sales extends RestController
     function index_post()
     {
         $data = array(
-            'sale_id' => $this->post('sale_id'),
             'date' => $this->post('date'),
             'pay' => $this->post('pay'),
             'total' => $this->post('total'),
@@ -51,23 +50,12 @@ class Sales extends RestController
             'employee_id' => $this->post('employee_id')
         );
 
-        $cek_data = $this->Sales_model->get($this->post('sale_id'));
-
-        if ($data['sale_id'] == NULL || $data['date'] == NULL || $data['pay'] == NULL || $data['total'] == NULL || $data['money_change']==NULL || $data['employee_id']==NULL) {
+        if ($data['date'] == NULL || $data['pay'] == NULL || $data['total'] == NULL || $data['money_change']==NULL || $data['employee_id']==NULL) {
             $this->response(
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Yang Dikirim Tidak Boleh Ada yang Kosong',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        } elseif($cek_data) {
-            $this->response(
-                [
-                    'status' =>false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

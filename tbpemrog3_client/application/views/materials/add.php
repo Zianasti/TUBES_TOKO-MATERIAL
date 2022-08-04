@@ -11,10 +11,6 @@
             <hr>
             <div class="row mt-2">
                 <form action="<?= base_url('materials/add') ?>" method="post">
-                <div class="col-md-6">                    
-                    <label for="">ID Material</label>
-                    <input type="number" class="form-control" name="material_id">                   
-                </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Nama</label>
                     <input type="text" class="form-control" name="name">                   

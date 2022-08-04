@@ -15,9 +15,7 @@ class Purchases extends CI_Controller
     public function index()
     {
         $data['title'] = "List Data Pembelian";
-
         $key = $this->session->userdata('KEY');
-
         $data['data_pembelian'] = $this->Purchases_model->getAll($key);
 
         $this->load->view('purchases/index', $data);
@@ -26,7 +24,6 @@ class Purchases extends CI_Controller
     public function detail($id)
     {
         $data['title'] = "List Data Pembelian";
-
         $key = $this->session->userdata('KEY');
 
         $data['data_pembelian'] = $this->Purchases_model->getById($id,$key);
@@ -41,7 +38,6 @@ class Purchases extends CI_Controller
         $data['title'] = "Tambah Data Purchases";
         $key = $this->session->userdata('KEY');
 
-        $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
         $this->form_validation->set_rules('date', 'DATE', 'trim|required');
         $this->form_validation->set_rules('total', 'total', 'trim|required');
         $this->form_validation->set_rules('description', 'description', 'trim|required');
@@ -53,7 +49,6 @@ class Purchases extends CI_Controller
             $this->load->view('purchases/add', $data);
         } else {
             $data = [
-                'purchase_id' => $this->input->post('purchase_id'),
                 'date' => $this->input->post('date'),
                 'total' => $this->input->post('total'),
                 'description' => $this->input->post('description'),

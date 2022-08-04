@@ -26,15 +26,15 @@
                     <a href="<?= base_url('sales/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Penjualan</th>
+                            <th>Nomor</th>
                             <th>Tanggal</th>
                             <th>Nama Karyawan</th>
                             <th>Total</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php foreach($data_penjualan as $dp): ?>
+                    <?php $nomor=0; foreach($data_penjualan as $dp): $nomor++ ?>
                         <tr>
-                            <td><?= $dp['sale_id'] ?></td>
+                            <td><?= $nomor ?></td>
                             <td><?= $dp['date'] ?></td>
                             <td><?= $dp['name'] ?></td>
                             <td><?= $dp['total'] ?></td>

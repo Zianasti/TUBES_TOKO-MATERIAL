@@ -73,10 +73,10 @@
 
         $.ajax({
             type : 'GET',
-            url : 'http://tbpemrog3.test/tbpemrog3_server/materials?material_id='+material,
-//             beforeSend: function (xhr) {
-//     xhr.setRequestHeader ("Authorization", "Basic " + btoa('ulbi' + ":" + 'pemrograman3'));
-// },
+            url : 'http://tbpemrog3.test/tbpemrog3_server/materials?KEY=test123&material_id='+material,
+            beforeSend: function (xhr) {
+    xhr.setRequestHeader ("Authorization", "Basic" + btoa('user' + ":" + 'password'));
+},
             success: function (data){
                 $('#price').val(data.data[0].price)
             }

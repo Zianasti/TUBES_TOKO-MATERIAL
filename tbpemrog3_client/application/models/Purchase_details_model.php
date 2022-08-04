@@ -32,7 +32,8 @@ class Purchase_details_model extends CI_Model
 
     public function getPurchases($key) {
         $getPurchases = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/purchases'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/purchases',
+            'auth'  => ['user', 'password']
         ]);
 
         $response = $getPurchases->request('GET', '', [
@@ -65,7 +66,8 @@ class Purchase_details_model extends CI_Model
 
     public function getMaterialCategories($key) {
         $getMaterialCategories = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/material_categories',
+            'auth'  => ['user', 'password']
         ]);
 
         $response = $getMaterialCategories->request('GET', '', [
@@ -81,7 +83,8 @@ class Purchase_details_model extends CI_Model
 
     public function getMaterials($key) {
         $getMaterials = new Client([
-            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/materials'
+            'base_uri' => 'http://tbpemrog3.test/tbpemrog3_server/materials',
+            'auth'  => ['user', 'password']
         ]);
 
         $response = $getMaterials->request('GET', '', [
@@ -146,7 +149,7 @@ class Purchase_details_model extends CI_Model
             'form_params' => [
                 'http_errors' => false,
                 'KEY' => $key,
-                'purchase_id' => $id
+                'purchase_detail_id' => $id
             ]
         ]);
 

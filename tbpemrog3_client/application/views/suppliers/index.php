@@ -26,14 +26,14 @@
                     <a href="<?= base_url('suppliers/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Pemasok</th>
+                            <th>Nomor</th>
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php foreach($data_suppliers as $ds): ?>
+                    <?php $nomor=0; foreach($data_suppliers as $ds): $nomor++; ?>
                         <tr>
-                            <td><?= $ds['supplier_id'] ?></td>
+                            <td><?= $nomor ?></td>
                             <td><?= $ds['name'] ?></td>
                             <td><?= $ds['address'] ?></td>
                             <td>

@@ -132,7 +132,7 @@ class Sale_details_model extends CI_Model
             'form_params' => [
                 'http_errors' => false,
                 'KEY' => $key,
-                'sale_id' => $id
+                'sale_detail_id' => $id
             ]
         ]);
 

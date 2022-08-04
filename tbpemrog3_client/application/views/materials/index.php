@@ -26,14 +26,14 @@
                     <a href="<?= base_url('materials/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Material</th>
+                            <th>Nomor</th>
                             <th>Nama</th>
                             <th>Stok</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php foreach($data_materials as $dm): ?>
+                    <?php $nomor=0; foreach($data_materials as $dm): $nomor++ ?>
                         <tr>
-                            <td><?= $dm['material_id'] ?></td>
+                            <td><?= $nomor ?></td>
                             <td><?= $dm['name'] ?></td>
                             <td><?= $dm['stock'] ?></td>
                             <td>
