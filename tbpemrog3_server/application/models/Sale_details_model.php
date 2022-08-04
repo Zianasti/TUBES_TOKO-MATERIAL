@@ -24,7 +24,7 @@ class Sale_details_Model extends CI_Model
     {
         if ($data) {
             $this->db->insert($this->_table, [
-                'sale_detail_id' => $data['sale_detail_id'],
+                'sale_detail_id' => '',
                 'qty' => $data['qty'],
                 'disc' => $data['disc'],
                 'subtotal' => $data['subtotal'],
