@@ -39,7 +39,6 @@ class Sale_details extends CI_Controller
         $data['title'] = "Tambah Data Sale_details";
         $key = $this->session->userdata('KEY');
 
-        $this->form_validation->set_rules('sale_detail_id', 'sale_detail_id', 'trim|required');
         $this->form_validation->set_rules('qty', 'qty', 'trim|required');
         $this->form_validation->set_rules('disc', 'disc', 'trim|required');
         $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
@@ -55,7 +54,6 @@ class Sale_details extends CI_Controller
             $this->load->view('sale_details/add', $data);
         } else {
             $data = [
-                'sale_detail_id' => $this->input->post('sale_detail_id'),
                 'qty' => $this->input->post('qty'),
                 'disc' => $this->input->post('disc'),
                 'subtotal' => $this->input->post('subtotal'),

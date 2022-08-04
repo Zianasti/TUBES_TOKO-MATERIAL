@@ -77,7 +77,7 @@
                     </div>
                     <div class="col-md-6 mt-2">                    
                         <label for="">Subtotal</label>
-                        <input type="number" name="subtotal" id="inputSubtotal" class="form-control">
+                        <input type="number" name="subtotal" id="inputSubtotal" class="form-control" readonly="true">
                     </div>
                     <div class="col-md-6 mt-2">                    
                         <label for="">Pembelian</label>
@@ -125,6 +125,13 @@
                 document.getElementById('selectMaterialName').style.display = "block"
             }
         }
+
+        $('#inputCost').on('keyup', function(){
+            var cost = $('#inputCost').val()
+            var qty = $('#inputQty').val()
+            var subtotal = qty * cost
+            $('#inputSubtotal').val(subtotal)
+        })
     </script>
 </body>
 </html>

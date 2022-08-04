@@ -44,7 +44,6 @@ class Sale_Details extends RestController
     function index_post()
     {
         $data = array(
-            'sale_detail_id' => $this->post('sale_detail_id'),
             'qty' => $this->post('qty'),
             'disc' => $this->post('disc'),
             'subtotal' => $this->post('subtotal'),
@@ -52,23 +51,13 @@ class Sale_Details extends RestController
             'sale_id' => $this->post('sale_id')
         );
 
-        $cek_data = $this->Sale_details_model->get($this->post('sale_detail_id'),'');
 
-        if ($data['sale_detail_id'] == NULL || $data['qty'] == NULL || $data['disc'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['sale_id']==NULL) {
+        if ($data['qty'] == NULL || $data['disc'] == NULL || $data['subtotal'] == NULL || $data['material_id']==NULL || $data['sale_id']==NULL) {
             $this->response(
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Yang Dikirim Tidak Boleh Ada yang Kosong',
-                ],
-                RestController::HTTP_BAD_REQUEST
-            );
-        } elseif($cek_data) {
-            $this->response(
-                [
-                    'status' =>false,
-                    'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Duplikat',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
