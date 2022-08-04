@@ -32,7 +32,9 @@
                             <th>Total</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php $nomor=0; foreach($data_pembelian as $dp): $nomor++ ?>
+                        <?php 
+                        if ($data_pembelian != false) {
+                        $nomor = 0; foreach($data_pembelian as $dp):$nomor++; ?>
                         <tr>
                             <td><?= $nomor?></td>
                             <td><?= $dp['date'] ?></td>
@@ -52,7 +54,19 @@
                                 </form>                              -->
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach;} ?>
+                    <?php
+                    if ($data_pembelian == false)
+                    echo "
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Data Tidak Ada</td>
+                            <td></td>
+                            <td></td>
+                    <tr>
+                    ";
+                    ?>
                     </table>
                 </div>
             </div>

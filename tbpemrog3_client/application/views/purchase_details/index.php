@@ -34,7 +34,9 @@
                             <th>Subtotal</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php $nomor=0; foreach($data_rincian_pembelian as $drp):$nomor++ ?>
+                        <?php 
+                    if ($data_rincian_pembelian != false) {
+                    $nomor = 0; foreach($data_rincian_pembelian as $drp):$nomor++; ?>
                         <tr>
                             <td><?= $nomor ?></td>
                             <td><?= $drp['date'] ?></td>
@@ -56,7 +58,21 @@
                                 </form>                              -->
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach;} ?>
+                    <?php
+                    if ($data_rincian_pembelian == false)
+                    echo "
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Data Tidak Ada</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                    <tr>
+                    ";
+                    ?>
                     </table>
                 </div>
             </div>

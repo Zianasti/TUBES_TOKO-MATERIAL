@@ -31,7 +31,10 @@
                             <th>Email</th>
                             <th>Aksi</th>
                         </tr>
-                    <?php $nomor=1; foreach($data_employees as $de): ?>
+                    <?php
+                    if ($data_employees != false) {
+                        $nomor=1; foreach($data_employees as $de): ?>
+                    
                         <tr>
                             <td><?= $nomor ?></td>
                             <td><?= $de['name'] ?></td>
@@ -47,7 +50,18 @@
                                 </form>    
                             </td>
                         </tr>
-                    <?php $nomor++; endforeach; ?>
+                    <?php $nomor++; endforeach; } ?>
+                    <?php
+                    if($data_employees == false)
+                    echo "
+                        <tr>
+                            <td></td>
+                            <td>Data Tidak Ada</td>
+                            <td></td>
+                            <td?></td>
+                        </tr>
+                    ";
+                    ?>
                     </table>
                 </div>
             </div>

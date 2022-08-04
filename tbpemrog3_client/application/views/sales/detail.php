@@ -76,7 +76,9 @@
                             <th>Subtotal</th>
                             <th>Aksi</th>
                         </tr>
-                        <?php $nomor=0; foreach ($data_rincian_penjualan as $drp) : $nomor++; ?>
+                        <?php
+                        if ($data_rincian_penjualan != false) {
+                        $nomor = 0; foreach($data_rincian_penjualan as $drp):$nomor++; ?>
                             <tr>
                                 <td><?= $nomor ?></td>
                                 <td><?= $drp['date'] ?></td>
@@ -89,7 +91,20 @@
                                     </a>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach; }?>
+                        <?php
+                        if ($data_rincian_penjualan == false)
+                        echo "
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Tidak Ada Data</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        ";
+                        ?>
                     </table>
                 </div>
             </div>

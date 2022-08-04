@@ -33,9 +33,9 @@ class Sales extends RestController
                 [
                     'data' => false,
                     'status' => 'Data Tidak Ada',
-                    'response_code' => RestController::HTTP_NOT_FOUND
+                    'response_code' => RestController::HTTP_OK
                 ],
-                RestController::HTTP_NOT_FOUND
+                RestController::HTTP_OK
             );
         }
     }
