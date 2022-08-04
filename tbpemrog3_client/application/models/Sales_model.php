@@ -39,7 +39,7 @@ class Sales_model extends CI_Model
         $response = $getSaleDetails->request('GET', '', [
             'query' => [
                 'KEY' => $key,
-                'Sale_id' => $id
+                'sale_id' => $id
             ]
         ]);
 

@@ -40,15 +40,15 @@
                 </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Bayar</label>
-                    <input type="number" class="form-control" name="pay" value="<?= $dp['pay'] ?>">                   
+                    <input type="number" class="form-control" id="pay" name="pay" value="<?= $dp['pay'] ?>">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Total</label>
-                    <input type="number" class="form-control" name="total" value="<?= $dp['total'] ?>">                   
+                    <input type="number" class="form-control" id="total" name="total" value="<?= $dp['total'] ?>">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Uang Kembalian</label>
-                    <input type="number" class="form-control" name="money_change" value="<?= $dp['money_change'] ?>">                   
+                    <input type="number" class="form-control" id="money_change" name="money_change" readonly="true" value="<?= $dp['money_change'] ?>">                   
                 </div>
                 
                 <div class="col-md-6">
@@ -62,5 +62,13 @@
         <!-- Ngubah isi konten halaman sampe sini -->
     </div>
     <?php $this->load->view('template/footer'); ?>
+    <script>
+        $('#pay').on('keyup', function (){
+        var pay = $('#pay').val()
+        var total = $('#total').val()
+        var money_change = pay - total
+        $('#money_change').val(money_change)
+    })
+    </script>
 </body>
 </html>

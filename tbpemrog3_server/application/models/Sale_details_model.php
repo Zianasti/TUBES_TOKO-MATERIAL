@@ -40,9 +40,20 @@ class Sale_details_Model extends CI_Model
             //update jumlah stock diambil dari qty yang baru diinput
             $currentStock = intval($currentStock->stock) - $data['qty'];
 
+            $this->db->from('sales');
+            $this->db->where('sale_id', $data['sale_id']);
+            $this->db->select('total');
+            $currentTotal = $this->db->get()->row();
+
+            $currentTotal = intval($currentTotal->total) + $data['subtotal'];
+
             $this->db->update('materials',[
                 'stock' => $currentStock
             ], ['material_id' => $data['material_id']]);
+
+            $this->db->update('sales',[
+                'total' => $currentTotal
+            ], ['sale_id' => $data['sale_id']]);
 
             return 1;
         }
