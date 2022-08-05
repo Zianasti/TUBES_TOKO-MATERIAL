@@ -84,7 +84,7 @@ class Auth extends CI_Controller {
 	public function generatekey() {
 		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$charsLength = strlen($chars);
-		$keyLength = 5;
+		$keyLength = 7;
 		$newKey['newKey'] = '';
 		for ($i = 0;$i < $keyLength; $i++) {
 			$newKey['newKey'] .= $chars[rand(0, $charsLength - 1)];
