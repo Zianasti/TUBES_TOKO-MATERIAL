@@ -41,14 +41,28 @@
                                 Material
                             </a>
                             <div class="sb-sidenav-menu-heading">Data Transaksi</div>
-                            <a class="nav-link" href="<?= base_url('purchases') ?>">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Data Pembelian
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="<?= base_url('sales') ?>">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?= base_url('purchases') ?>">Pembelian</a>
+                                    <a class="nav-link" href="<?= base_url('purchase_details') ?>">Rincian Pembelian</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Data Penjualan
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?= base_url('sales') ?>">Penjualan</a>
+                                    <a class="nav-link" href="<?= base_url('sale_details') ?>">Rincian Penjualan</a>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </nav>
