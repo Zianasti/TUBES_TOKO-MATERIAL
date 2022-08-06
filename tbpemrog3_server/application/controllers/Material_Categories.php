@@ -89,7 +89,6 @@ class Material_Categories extends RestController
             'name' => $this->put('name')
         );
 
-        //Jika field npm tidak diisi
         if ($id == NULL) {
             $this->response(
                 [

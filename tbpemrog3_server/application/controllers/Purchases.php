@@ -95,7 +95,7 @@ class Purchases extends RestController
                 [
                     'status' => $id,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data dengan ID '.$id.' berhasil diubah',
+                    'message' => 'ID Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
