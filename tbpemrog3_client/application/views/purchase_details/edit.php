@@ -6,7 +6,7 @@
         <!-- Ngubah isi konten halaman dari sini -->
         <div class="container">
             <div class="row mt-2">
-                <h3>Ubah Data Pembelian</h3>
+                <h3>Ubah Data Rincian Pembelian</h3>
             </div>
             <!-- Alert kalau ada pesan dari controller -->
                 <?php if ($this->session->flashdata('message')) : ?>
@@ -20,7 +20,7 @@
             <!-- /Alert kalau ada pesan dari controller -->
             <hr>
             <div class="row mt-2">
-                <?php foreach($data_pembelian as $dp): ?>
+                <?php foreach($data_rincian_pembelian as $drp): ?>
                 <form action="" method="post">
                 <div class="col-md-6">                    
                     <input type="hidden" class="form-control" name="purchase_id" value="<?= $dp['purchase_id'] ?>">                   
