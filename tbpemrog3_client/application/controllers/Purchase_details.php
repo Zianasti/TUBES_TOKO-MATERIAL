@@ -116,11 +116,13 @@ class Purchase_details extends CI_Controller
         $this->form_validation->set_rules('cost', 'cost', 'trim|required');
         $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
         $this->form_validation->set_rules('material_id', 'material_id', 'trim|required');
+        $this->form_validation->set_rules('purchase_id', 'purchase_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
             $key = $this->session->userdata('KEY');
-            $data['data_pemasok'] = $this->Purchase_details_model->getSuppliers($key);
+            $data['data_pembelian'] = $this->Purchase_details_model->getPurchases($key);
             $data['data_rincian_pembelian'] = $this->Purchase_details_model->getById($id,$key);
+            $data['data_material'] = $this->Purchase_details_model->getMaterials($key);
 
             $this->load->view('purchase_details/edit', $data);
         } else {
@@ -130,18 +132,19 @@ class Purchase_details extends CI_Controller
                 'cost' => $this->input->post('cost'),
                 'subtotal' => $this->input->post('subtotal'),
                 'material_id' => $this->input->post('material_id'),
+                'purchase_id' => $this->input->post('purchase_id'),
                 'KEY' => $key
             ];
 
-            $upqty = $this->Purchase_details_model->upqty($data,$key);
-            if ($upqty['response_code']===201) {
+            $update = $this->Purchase_details_model->update($data,$key);
+            if ($update['response_code']===201) {
                 $this->session->set_flashdata('flash','Data diubah');
                 redirect('Purchase_details'); 
-            } elseif ($upqty['response_code']===400) {
+            } elseif ($update['response_code']===400) {
                 $this->session->set_flashdata('message','Data Gagal, silakan coba lagi');
                 redirect('Purchase_details'); 
             } else {
-                $this->session->set_flashdata('message','Upqty Data Gagal');
+                $this->session->set_flashdata('message','Update Data Gagal');
                 redirect('Purchase_details'); 
             } 
         }

@@ -15,7 +15,7 @@ class Sale_details_Model extends CI_Model
         }
         $this->db->join('materials','materials.material_id = sale_details.material_id');
         $this->db->join('sales','sales.sale_id = sale_details.sale_id');
-        $this->db->select('sale_detail_id, qty, disc, subtotal, materials.name, materials.price, sales.date, sales.pay, sales.total, sales.money_change');
+        $this->db->select('sale_detail_id, qty, disc, subtotal, materials.name, materials.price, materials.material_id, sales.sale_id, sales.date, sales.pay, sales.total, sales.money_change');
         $query = $this->db->get()->result_array();
         return $query;
     }

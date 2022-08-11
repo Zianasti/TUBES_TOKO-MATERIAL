@@ -83,41 +83,44 @@ class Sale_details extends CI_Controller
         
         $this->form_validation->set_rules('sale_detail_id', 'sale_detail_id', 'trim|required');
         $this->form_validation->set_rules('qty', 'QTY', 'trim|required');
-        $this->form_validation->set_rules('cost', 'cost', 'trim|required');
+        $this->form_validation->set_rules('disc', 'disc', 'trim|required');
         $this->form_validation->set_rules('subtotal', 'subtotal', 'trim|required');
         $this->form_validation->set_rules('material_id', 'material_id', 'trim|required');
+        $this->form_validation->set_rules('sale_id', 'sale_id', 'trim|required');
 
         if ($this->form_validation->run()==false) {
             $key = $this->session->userdata('KEY');
-            $data['data_rincian_penjualan'] = $this->Sale_details_model->getSuppliers($key);
+            $data['data_material'] = $this->Sale_details_model->getMaterials($key);
             $data['data_rincian_penjualan'] = $this->Sale_details_model->getById($id,$key);
+            $data['data_penjualan'] = $this->Sale_details_model->getSales($key);
 
             $this->load->view('sale_details/edit', $data);
         } else {
             $data = [
                 'sale_detail_id' => $this->input->post('sale_detail_id'),
                 'qty' => $this->input->post('qty'),
-                'cost' => $this->input->post('cost'),
+                'disc' => $this->input->post('disc'),
                 'subtotal' => $this->input->post('subtotal'),
                 'material_id' => $this->input->post('material_id'),
+                'sale_id' => $this->input->post('sale_id'),
                 'KEY' => $key
             ];
 
-            $upqty = $this->Sale_details_model->upqty($data,$key);
-            if ($upqty['response_code']===201) {
+            $update = $this->Sale_details_model->update($data,$key);
+            if ($update['response_code']===201) {
                 $this->session->set_flashdata('flash','Data diubah');
                 redirect('Sale_details'); 
-            } elseif ($upqty['response_code']===400) {
+            } elseif ($update['response_code']===400) {
                 $this->session->set_flashdata('message','Data Gagal, silakan coba lagi');
                 redirect('Sale_details'); 
             } else {
-                $this->session->set_flashdata('message','Upqty Data Gagal');
+                $this->session->set_flashdata('message','Update Data Gagal');
                 redirect('Sale_details'); 
             } 
         }
     }
 
-    public function delete($id,$key)
+    public function delete($id)
     {
         $key = $this->session->userdata('KEY');
         $delete = $this->Sale_details_model->delete($id,$key);

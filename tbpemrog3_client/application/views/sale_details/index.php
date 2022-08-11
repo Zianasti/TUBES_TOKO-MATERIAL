@@ -26,7 +26,7 @@
                     <a href="<?= base_url('sale_details/add') ?>" class="btn btn-success">Tambah Data</a>
                     <table class="table">
                         <tr>
-                            <th>ID Rincian Penjualan</th>
+                            <th>Nomor</th>
                             <th>Tanggal</th>
                             <th>Nama Material</th>
                             <th>Qty</th>
@@ -39,7 +39,7 @@
                     if ($data_rincian_penjualan != false) {
                         $nomor = 0; foreach($data_rincian_penjualan as $drp):$nomor++; ?>
                         <tr>
-                            <td><?= $drp['sale_detail_id'] ?></td>
+                            <td><?= $nomor ?></td>
                             <td><?= $drp['date'] ?></td>
                             <td><?= $drp['name'] ?></td>
                             <td><?= $drp['qty'] ?></td>
@@ -49,7 +49,15 @@
                             <td>
                                 <a href="<?= base_url('sale_details/detail/').$drp['sale_detail_id'] ?>" class="btn btn-secondary btn-sm">
                                     <i class="fa fa-info"></i>
-                                </a>                             
+                                </a> 
+                                <a href="<?= base_url('sale_details/edit/').$drp['sale_detail_id'] ?>" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                </a>  
+                                <form action="<?= base_url('sale_details/delete/').$drp['sale_detail_id'] ?>" id="formDelete<?= $drp['sale_detail_id'] ?>">
+                                    <a href="#" onclick="deleteConfirmation(<?= $drp['sale_detail_id'] ?>)" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </form>                           
                             </td>
                         </tr>
                     <?php endforeach;} ?>

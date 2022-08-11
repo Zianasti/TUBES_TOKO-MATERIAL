@@ -51,7 +51,7 @@
                     <input type="number" id="subtotal" class="form-control" name="subtotal" readonly="true">                   
                 </div>
                 <div class="col-md-6">
-                    <a href="<?= base_url('sales') ?>" class="btn btn-secondary mt-2">Kembali</a>
+                    <a href="<?= base_url('sale_details') ?>" class="btn btn-secondary mt-2">Kembali</a>
                     <input type="submit" class="btn btn-primary float-end mt-2" value="Simpan">
                 </div>
                 </form>
@@ -69,7 +69,7 @@
 
         $.ajax({
             type : 'GET',
-            url : 'http://tbpemrog3.test/tbpemrog3_server/materials?KEY=test123&material_id='+material,
+            url : 'http://tbpemrog3.test/tbpemrog3_server/materials?KEY=<?php echo $this->session->userdata('KEY') ?>&material_id='+material,
             headers: {
                 "Authorization": "Basic " + btoa("user" + ":" + "password")
             },

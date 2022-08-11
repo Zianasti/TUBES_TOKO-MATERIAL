@@ -15,7 +15,7 @@ class Purchase_details_Model extends CI_Model
         }
         $this->db->join('materials','materials.material_id = purchase_details.material_id');
         $this->db->join('purchases','purchases.purchase_id = purchase_details.purchase_id');
-        $this->db->select('purchase_detail_id, qty, cost, subtotal, materials.name, materials.price, purchases.date, purchases.total, purchases.description');
+        $this->db->select('purchase_detail_id, qty, cost, subtotal, materials.material_id, materials.name, materials.price, purchases.purchase_id, purchases.date, purchases.total, purchases.description');
         $query = $this->db->get()->result_array();
         return $query;
     }
