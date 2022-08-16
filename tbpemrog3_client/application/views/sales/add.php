@@ -25,16 +25,16 @@
                     </select>                
                 </div>
                 <div class="col-md-6 mt-2">                    
-                    <label for="">Total</label>
-                    <input type="number" class="form-control" id="total" name="total">                   
+                    <!-- <label for="">Total</label> -->
+                    <input type="hidden" class="form-control" id="total" name="total" value = 0>                   
                 </div>
                 <div class="col-md-6 mt-2">                    
-                    <label for="">Bayar</label>
-                    <input type="number" class="form-control" id="pay" name="pay">                   
+                    <!-- <label for="">Bayar</label> -->
+                    <input type="hidden" class="form-control" id="pay" name="pay" value=0>                   
                 </div>
                 <div class="col-md-6 mt-2">                    
-                    <label for="">Uang Kembalian</label>
-                    <input type="number" class="form-control" id="money_change" name="money_change" readonly="true">                   
+                    <!-- <label for="">Uang Kembalian</label> -->
+                    <input type="hidden" class="form-control" id="money_change" name="money_change" readonly="true" value=0>                   
                 </div>
                 
                 <div class="col-md-6">

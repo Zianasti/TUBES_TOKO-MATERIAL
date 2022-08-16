@@ -39,12 +39,12 @@
                     </select>                
                 </div>
                 <div class="col-md-6 mt-2">                    
-                    <label for="">Bayar</label>
-                    <input type="number" class="form-control" id="pay" name="pay" value="<?= $dp['pay'] ?>">                   
+                    <label for="">Total</label>
+                    <input type="number" class="form-control" id="total" name="total" value="<?= $dp['total'] ?>" readonly="true">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
-                    <label for="">Total</label>
-                    <input type="number" class="form-control" id="total" name="total" value="<?= $dp['total'] ?>">                   
+                    <label for="">Bayar</label>
+                    <input type="number" class="form-control" id="pay" name="pay" value="<?= $dp['pay'] ?>">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Uang Kembalian</label>
