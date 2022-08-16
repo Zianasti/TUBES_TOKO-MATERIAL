@@ -50,14 +50,14 @@
                                 <a href="<?= base_url('sale_details/detail/').$drp['sale_detail_id'] ?>" class="btn btn-secondary btn-sm">
                                     <i class="fa fa-info"></i>
                                 </a> 
-                                <a href="<?= base_url('sale_details/edit/').$drp['sale_detail_id'] ?>" class="btn btn-primary btn-sm">
+                                <!-- <a href="<?= base_url('sale_details/edit/').$drp['sale_detail_id'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fa fa-edit"></i>
                                 </a>  
                                 <form action="<?= base_url('sale_details/delete/').$drp['sale_detail_id'] ?>" id="formDelete<?= $drp['sale_detail_id'] ?>">
                                     <a href="#" onclick="deleteConfirmation(<?= $drp['sale_detail_id'] ?>)" class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"></i>
                                     </a>
-                                </form>                           
+                                </form>                            -->
                             </td>
                         </tr>
                     <?php endforeach;} ?>

@@ -102,7 +102,7 @@ class Employees extends CI_Controller
                 $this->session->set_flashdata('flash','Data Diedit');
                 redirect('employees');
             }elseif ($update['response_code']===400) {
-                $this->session->set_flashdata('message','Data Duplikat');
+                $this->session->set_flashdata('message',$update['message']);
                 redirect('employees');
             }else{
                 $this->session->set_flashdata('message', 'Gagal!!');

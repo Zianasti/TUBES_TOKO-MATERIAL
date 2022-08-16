@@ -25,12 +25,12 @@
                     </select>                
                 </div>
                 <div class="col-md-6 mt-2">                    
-                    <label for="">Bayar</label>
-                    <input type="number" class="form-control" id="pay" name="pay">                   
-                </div>
-                <div class="col-md-6 mt-2">                    
                     <label for="">Total</label>
                     <input type="number" class="form-control" id="total" name="total">                   
+                </div>
+                <div class="col-md-6 mt-2">                    
+                    <label for="">Bayar</label>
+                    <input type="number" class="form-control" id="pay" name="pay">                   
                 </div>
                 <div class="col-md-6 mt-2">                    
                     <label for="">Uang Kembalian</label>
